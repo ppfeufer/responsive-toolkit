@@ -51,6 +51,7 @@ Section Order:
 ### Added
 
 - `src/test.html` file added to test the library in a browser during development
+- Give custom breakpoints more width, so they have a better chance of being used in demos
 
 ### Removed
 

@@ -149,7 +149,7 @@ Instead of Bootstrap's aliases `xs`, `sm`, `md` and `lg`, Foundation uses: `smal
 > different screen resolutions.
 >
 > How? \
-> [Refer to this example](https://github.com/ppfeufer/responsive-toolkit/blob/master/demos/custom/style.css).
+> [Refer to this example](https://github.com/ppfeufer/responsive-toolkit/blob/master/demos/custom/custom-breakpoints.css).
 
 ## Examples<a name="examples"></a>
 
