@@ -490,6 +490,21 @@
                                         ${config.description}
                                     </p>
 
+                                    <p class="demo-copy">
+                                        Resize the viewport to watch the active card follow your breakpoint setup.
+                                        The badge in the top-right corner is updated with <code>viewport.current()</code>.
+                                    </p>
+
+                                    <p class="demo-copy">
+                                        The breakpoint cards below are generated from the configuration object passed to this frame.
+                                        Each card has a <code>data-expression</code> attribute that matches the breakpoint alias.
+                                        When the current breakpoint matches the card's expression, it will be highlighted with a green background and border.
+                                    </p>
+
+                                    <p class="demo-copy">
+                                        Current frame width: <code class="frame-width"></code>
+                                    </p>
+
                                     <div class="comparison-boxes">
                                         ${buildCardMarkup(config.breakpoints)}
                                     </div>
@@ -508,6 +523,7 @@
                                         const currentBreakpoint = viewport.current();
 
                                         $('.breakpoint-alias').text(String(currentBreakpoint).toUpperCase());
+                                        $('.frame-width').text($(window).width() + 'px');
                                         $('.comparison-operator').each((_, element) => {
                                             const $element = $(element);
 
@@ -632,7 +648,7 @@
                         description: 'This frame uses inline custom breakpoint CSS and a custom breakpoint map to verify <code>viewport.use()</code> with user-defined aliases.',
                         breakpoints: [
                             { expression: 'alias-1', label: 'ALIAS-1', detail: '< 768px' },
-                            { expression: 'alias-2', label: 'ALIAS-2', detail: '≥ 768px, < 1200px' },
+                            { expression: 'alias-2', label: 'ALIAS-2', detail: '≥ 768px' },
                             { expression: 'alias-3', label: 'ALIAS-3', detail: '≥ 1200px' }
                         ],
                         stylesheets: [],

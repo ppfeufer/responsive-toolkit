@@ -77,14 +77,43 @@
                             </p>
                             <div class="showcase-grid">
                                 <article class="showcase-card">
-                                    <h3>1) Include CSS and JS</h3>
-                                    <pre><code class="language-html">&lt;link rel="stylesheet" href="responsive-toolkit.css"&gt;
-&lt;script src="https://code.jquery.com/jquery-3.7.1.min.js"&gt;&lt;/script&gt;
+                                    <h3>1) Include JavaScript</h3>
+                                    <pre><code class="language-html">&lt;script src="https://code.jquery.com/jquery-3.7.1.min.js"&gt;&lt;/script&gt;
 &lt;script src="responsive-toolkit.min.js"&gt;&lt;/script&gt;</code></pre>
                                 </article>
 
                                 <article class="showcase-card">
-                                    <h3>2) Do some fun stuff with breakpoints</h3>
+                                    <h3>2) Custom Breakpoints CSS</h3>
+                                    <pre><code class="language-css">/**
+ * Custom Breakpoints Demo:
+ *
+ * custom-1 = mobile
+ * custom-2 = tablet
+ * custom-3 = desktop
+ */
+
+/* Mobile first: default to custom-1 on small screens. */
+.visible-custom-1 { display: block; }
+.visible-custom-2 { display: none;  }
+.visible-custom-3 { display: none;  }
+
+/* Tablet and up: switch visibility to custom-2. */
+@media (width >= 768px) {
+    .visible-custom-1 { display: none;  }
+    .visible-custom-2 { display: block; }
+    .visible-custom-3 { display: none;  }
+}
+
+/* Desktop and up: switch visibility to custom-3. */
+@media (width >= 1200px) {
+    .visible-custom-1 { display: none;  }
+    .visible-custom-2 { display: none;  }
+    .visible-custom-3 { display: block; }
+}</code></pre>
+                                </article>
+
+                                <article class="showcase-card">
+                                    <h3>3) Do some fun stuff with breakpoints</h3>
                                     <pre><code class="language-javascript">/* global ResponsiveToolkit */
 
 // Wrap IIFE around your code
@@ -127,36 +156,6 @@
         );
     });
 })(jQuery, ResponsiveToolkit);</code></pre>
-                                </article>
-
-                                <article class="showcase-card">
-                                    <h3>3) Custom Breakpoints CSS</h3>
-                                    <pre><code class="language-css">/**
- * Custom Breakpoints Demo:
- *
- * custom-1 = mobile
- * custom-2 = tablet
- * custom-3 = desktop
- */
-
-/* Mobile first: default to custom-1 on small screens. */
-.visible-custom-1 { display: block; }
-.visible-custom-2 { display: none;  }
-.visible-custom-3 { display: none;  }
-
-/* Tablet and up: switch visibility to custom-2. */
-@media (width >= 768px) {
-    .visible-custom-1 { display: none;  }
-    .visible-custom-2 { display: block; }
-    .visible-custom-3 { display: none;  }
-}
-
-/* Desktop and up: switch visibility to custom-3. */
-@media (width >= 1200px) {
-    .visible-custom-1 { display: none;  }
-    .visible-custom-2 { display: none;  }
-    .visible-custom-3 { display: block; }
-}</code></pre>
                                 </article>
                             </div>
                         </section>
