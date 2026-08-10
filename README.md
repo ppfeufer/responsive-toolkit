@@ -2,154 +2,160 @@
 
 Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in JavaScript, detecting changes in currently active breakpoint, as well as executing any breakpoint-specific JavaScript code. Despite the name, you can use it also with Foundation, or any other framework.
 
-Current version: **2.6.3**
+______________________________________________________________________
 
-### Documentation
-* [Installation](#installation)
-* [Demo](#demo)
-* [Basic usage](#basic-usage)
-* [Execute code on window resize](#execute-code-on-window-resize)
-* [Get alias of current breakpoint](#get-alias-of-current-breakpoint)
-* [Using with Foundation](#using-with-foundation)
-* [Providing your own visibility classes](#providing-your-own-visibility-classes)
+<!-- mdformat-toc start --slug=github --maxlevel=6 --minlevel=2 -->
 
-### HOW-TO
-* [How do I include it in my project?](#how-do-i-include-it-in-my-project)
-* [Migrating from an older version](#migrating-from-an-older-version)
-* [Dependencies](#dependencies)
+- [Installation](#installation)
+  - [Download](#download)
+- [Usage](#usage)
+  - [Basic Usage](#basic-usage)
+  - [Execute Code on Window Resize](#execute-code-on-window-resize)
+  - [Get Alias of Current Breakpoint](#get-alias-of-current-breakpoint)
+  - [Using With Bootstrap 5](#using-with-bootstrap-5)
+  - [Providing Your Own Breakpoints](#providing-your-own-breakpoints)
+- [Examples](#examples)
 
-### Installation
+<!-- mdformat-toc end -->
 
-Using Bower:
-````
-bower install responsive-toolkit
-````
-Using NPM:
-````
-npm install responsive-toolkit
-````
+______________________________________________________________________
 
-### Demo
+## Installation<a name="installation"></a>
 
-Live example available on [CodePen](http://codepen.io/dih/full/ivECj). Hosted along with repository are the following usage examples:
-* [Bootstrap demo](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/tree/master/demos/bootstrap)
-* [Foundation demo](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/tree/master/demos/foundation)
-* [Custom breakpoints demo](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/tree/master/demos/custom)
+### Download<a name="download"></a>
 
+Download the latest release from [GitHub](https://github.com/ppfeufer/responsive-toolkit/releases/download/latest/responsive-toolkit.zip).
 
-#### Basic usage:
+## Usage<a name="usage"></a>
 
-````javascript
+To use Responsive Toolkit, include the following CSS and JS files in your HTML document:
+
+```html
+<!-- Responsive Toolkit -->
+<link rel="stylesheet" href="css/responsive-toolkit.min.css">
+```
+
+```html
+<!-- Responsive Toolkit -->
+<script src="js/responsive-toolkit.min.js"></script>
+<!-- Your scripts using Responsive Toolkit -->
+<script src="js/my-own.js"></script>
+```
+
+### Basic Usage<a name="basic-usage"></a>
+
+```javascript
 // Wrap IIFE around your code
-(function($, viewport){
-    $(document).ready(function() {
+(($, viewport) => {
+    'use strict';
 
+    $(document).ready(() => {
         // Executes only in XS breakpoint
-        if(viewport.is('xs')) {
+        if (viewport.is('xs')) {
             // ...
         }
 
         // Executes in SM, MD and LG breakpoints
-        if(viewport.is('>=sm')) {
+        if (viewport.is('>=sm')) {
             // ...
         }
 
         // Executes in XS and SM breakpoints
-        if(viewport.is('<md')) {
+        if (viewport.is('<md')) {
             // ...
         }
 
         // Execute code each time window size changes
         $(window).resize(
-            viewport.changed(function() {
-                if(viewport.is('xs')) {
+            viewport.changed(() => {
+                if (viewport.is('xs')) {
                     // ...
                 }
             })
         );
     });
-})(jQuery, ResponsiveBootstrapToolkit);
-````
+})(jQuery, ResponsiveToolkit);
+```
 
-#### Execute code on window resize
+### Execute Code on Window Resize<a name="execute-code-on-window-resize"></a>
+
 Allows using custom debounce interval. The default one is set at 300ms.
 
-````javascript
+```javascript
 $(window).resize(
-    viewport.changed(function() {
+    viewport.changed(() => {
 
       // ...
 
     }, 150)
 );
-````
+```
 
-#### Get alias of current breakpoint
-````javascript
+### Get Alias of Current Breakpoint<a name="get-alias-of-current-breakpoint"></a>
+
+```javascript
 $(window).resize(
-    viewport.changed(function() {
+    viewport.changed(() => {
         console.log('Current breakpoint: ', viewport.current());
     })
 );
-````
+```
 
-#### Using with Foundation
+### Using With Bootstrap 5<a name="using-with-bootstrap-5"></a>
 
 Instead of Bootstrap's aliases `xs`, `sm`, `md` and `lg`, Foundation uses: `small`, `medium`, `large`, and `xlarge`.
 
-````javascript
-(function($, viewport){
+```javascript
+(($, viewport) => {
+    'use strict';
 
-    viewport.use('Foundation');
+    viewport.use('Bootstrap5');
 
-    if(viewport.is('small')) {
+    if (viewport.is('sm')) {
         // ...
     }
 
-})(jQuery, ResponsiveBootstrapToolkit);
-````
+})(jQuery, ResponsiveToolkit);
+```
 
-**Note:**
-Currently, only Foundation 5 visibility classes are supported. If you'd like to support older version of any framework, or provide your own visibility classes, refer to example below.
+> [!NOTE]
+>
+> Bootstrap 3 and 4 are supported as well. \
+> Just use `viewport.use('Bootstrap3')` or `viewport.use('Bootstrap4')`.
 
-#### Providing your own visibility classes
+### Providing Your Own Breakpoints<a name="providing-your-own-breakpoints"></a>
 
-````javascript
+```javascript
 (function($, viewport){
 
-    var visibilityDivs = {
-        'alias-1': $('<div class="device-alias-1 your-visibility-class-1"></div>'),
-        'alias-2': $('<div class="device-alias-2 your-visibility-class-2"></div>'),
-        'alias-3': $('<div class="device-alias-3 your-visibility-class-3"></div>')
+    var myBreakpoints = {
+        'alias-1': $('<div class="device-alias-1 visible-custom-1"></div>'),
+        'alias-2': $('<div class="device-alias-2 visible-custom-2"></div>'),
+        'alias-3': $('<div class="device-alias-3 visible-custom-3"></div>')
     };
 
-    viewport.use('Custom', visibilityDivs);
+    viewport.use('MyBreakpoints', myBreakpoints);
 
     if(viewport.is('alias-1')) {
         // ...
     }
+})(jQuery, ResponsiveToolkit);
+```
 
-})(jQuery, ResponsiveBootstrapToolkit);
-````
+> [!NOTE]
+>
+> It's up to you to create media queries that will toggle div's visibility across
+> different screen resolutions.
+>
+> How? \
+> [Refer to this example](https://github.com/ppfeufer/responsive-toolkit/blob/master/demos/custom/style.css).
 
-**Note**:
-It's up to you to create media queries that will toggle div's visibility across different screen resolutions. How? [Refer to this example](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/blob/master/demos/custom/style.css).
+## Examples<a name="examples"></a>
 
-#### How do I include it in my project?
+Some examples of how to use Responsive Toolkit can be found in the [demos](https://github.com/ppfeufer/responsive-toolkit/tree/master/demos) folder:
 
-Paste just before `</body>`
-
-````html
-<!-- Responsive Bootstrap Toolkit -->
-<script src="js/bootstrap-toolkit.min.js"></script>
-<!-- Your scripts using Responsive Bootstrap Toolkit -->
-<script src="js/main.js"></script>
-````
-
-### Migrating from an older version
-
-Refer to the [changelog](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/blob/master/CHANGELOG.md) for a list of changes in each version of the library.
-
-#### Dependencies:
-* jQuery
-* Bootstrap's responsive utility css classes (included in its standard stylesheet package)
+- [Default breakpoints](https://github.com/ppfeufer/responsive-toolkit/tree/master/demos/default)
+- [Bootstrap 3](https://github.com/ppfeufer/responsive-toolkit/tree/master/demos/bootstrap3)
+- [Bootstrap 4](https://github.com/ppfeufer/responsive-toolkit/tree/master/demos/bootstrap4)
+- [Bootstrap 5](https://github.com/ppfeufer/responsive-toolkit/tree/master/demos/bootstrap5)
+- [Custom breakpoints](https://github.com/ppfeufer/responsive-toolkit/tree/master/demos/custom)

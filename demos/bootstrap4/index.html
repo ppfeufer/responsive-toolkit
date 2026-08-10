@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Responsive Toolkit (Bootstrap 4 Demo)</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="style.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <div class="site-topbar">
+                <h1>Responsive Toolkit <span class="d-block demo-version">Bootstrap 4 Demo</span></h1>
+                <div class="breakpoint-alias" aria-live="polite">XS</div>
+            </div>
+
+            <main class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10 col-xl-8">
+                        <p class="demo-copy">
+                            Resize the viewport to watch the active card follow the current Bootstrap 4 breakpoint.
+                            The badge in the top-right corner is updated with <code>viewport.current()</code>.
+                        </p>
+
+                        <div class="comparison-boxes">
+                            <div class="comparison-operator" data-expression="xs">
+                                <span class="comparison-label">XS</span>
+                                <span class="comparison-detail">&lt; 576px</span>
+                            </div>
+                            <div class="comparison-operator" data-expression="sm">
+                                <span class="comparison-label">SM</span>
+                                <span class="comparison-detail">≥ 576px</span>
+                            </div>
+                            <div class="comparison-operator" data-expression="md">
+                                <span class="comparison-label">MD</span>
+                                <span class="comparison-detail">≥ 768px</span>
+                            </div>
+                            <div class="comparison-operator" data-expression="lg">
+                                <span class="comparison-label">LG</span>
+                                <span class="comparison-detail">≥ 992px</span>
+                            </div>
+                            <div class="comparison-operator" data-expression="xl">
+                                <span class="comparison-label">XL</span>
+                                <span class="comparison-detail">≥ 1200px</span>
+                            </div>
+                        </div>
+
+                        <p class="status-note">Open the browser console to see breakpoint changes logged on resize.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="../../dist/js/responsive-toolkit.min.js"></script>
+        <script src="main.min.js"></script>
+    </body>
+</html>

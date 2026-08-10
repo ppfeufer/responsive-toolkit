@@ -1,0 +1,17 @@
+@media (width <= 480px) {
+    .visible-custom-1 { display: block; }
+    .visible-custom-2 { display: none;  }
+    .visible-custom-3 { display: none;  }
+}
+
+@media (width >= 481px) and (width <= 799px) {
+    .visible-custom-1 { display: none;  }
+    .visible-custom-2 { display: block; }
+    .visible-custom-3 { display: none;  }
+}
+
+@media (width >= 800px) {
+    .visible-custom-1 { display: none;  }
+    .visible-custom-2 { display: none;  }
+    .visible-custom-3 { display: block; }
+}
