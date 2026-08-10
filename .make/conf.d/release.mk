@@ -18,7 +18,7 @@ prepare-release: pot
 	rm -rf node_modules; \
 	rm package-lock.json; \
 	npm install; \
-	# Update the version in the main JS file and build the JS files \
+	# Update the version in the main CSS and JS file and build the distribution files \
 	sed -i -E "\|\* @version |s|@version .*|@version $$new_version|g" src/responsive-toolkit.css; \
 	sed -i -E "\|\* @version |s|@version .*|@version $$new_version|g" src/responsive-toolkit.js; \
 	make build; \
