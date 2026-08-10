@@ -166,10 +166,12 @@
             }
         </style>
     </head>
+
     <body>
         <div class="page-shell">
             <header class="page-header">
                 <h1>Responsive Toolkit source test</h1>
+
                 <p>
                     This page opens one isolated preview for each supported framework plus a custom-breakpoint preview.
                     Each frame loads the current <code>responsive-toolkit.js</code> source and exercises the matching
@@ -193,6 +195,7 @@
                                 <h2>Default breakpoints</h2>
                                 <p>Uses the toolkit default behavior and the inline <code>responsive-toolkit.css</code> rules.</p>
                             </div>
+
                             <iframe class="preview-frame" id="frame-default" title="Responsive Toolkit default breakpoints preview"></iframe>
                         </section>
 
@@ -201,6 +204,7 @@
                                 <h2>Bootstrap 3</h2>
                                 <p>Exercises the Bootstrap 3 visibility classes supported by <code>viewport.use('Bootstrap3')</code>.</p>
                             </div>
+
                             <iframe class="preview-frame" id="frame-bootstrap3" title="Responsive Toolkit Bootstrap 3 preview"></iframe>
                         </section>
 
@@ -209,6 +213,7 @@
                                 <h2>Bootstrap 4</h2>
                                 <p>Exercises the Bootstrap 4 visibility classes supported by <code>viewport.use('Bootstrap4')</code>.</p>
                             </div>
+
                             <iframe class="preview-frame" id="frame-bootstrap4" title="Responsive Toolkit Bootstrap 4 preview"></iframe>
                         </section>
 
@@ -217,6 +222,7 @@
                                 <h2>Bootstrap 5</h2>
                                 <p>Exercises the Bootstrap 5 visibility classes supported by <code>viewport.use('Bootstrap5')</code>.</p>
                             </div>
+
                             <iframe class="preview-frame" id="frame-bootstrap5" title="Responsive Toolkit Bootstrap 5 preview"></iframe>
                         </section>
 
@@ -225,6 +231,7 @@
                                 <h2>Custom breakpoints</h2>
                                 <p>Uses inline custom breakpoint CSS and a custom breakpoint map via <code>viewport.use()</code>.</p>
                             </div>
+
                             <iframe class="preview-frame" id="frame-custom" title="Responsive Toolkit custom breakpoints preview"></iframe>
                         </section>
                     </div>
@@ -370,21 +377,21 @@
                 `;
 
                 const customBreakpointStyles = `
-                    @media (width <= 480px) {
+                    @media (width <= 767px) {
                         .visible-custom-1 { display: block; }
-                        .visible-custom-2 { display: none; }
-                        .visible-custom-3 { display: none; }
+                        .visible-custom-2 { display: none;  }
+                        .visible-custom-3 { display: none;  }
                     }
 
-                    @media (width >= 481px) and (width <= 799px) {
-                        .visible-custom-1 { display: none; }
+                    @media (width >= 768px) and (width <= 1199px) {
+                        .visible-custom-1 { display: none;  }
                         .visible-custom-2 { display: block; }
-                        .visible-custom-3 { display: none; }
+                        .visible-custom-3 { display: none;  }
                     }
 
-                    @media (width >= 800px) {
-                        .visible-custom-1 { display: none; }
-                        .visible-custom-2 { display: none; }
+                    @media (width >= 1200px) {
+                        .visible-custom-1 { display: none;  }
+                        .visible-custom-2 { display: none;  }
                         .visible-custom-3 { display: block; }
                     }
                 `;
@@ -615,9 +622,9 @@
                         currentLabel: 'ALIAS-1',
                         description: 'This frame uses inline custom breakpoint CSS and a custom breakpoint map to verify <code>viewport.use()</code> with user-defined aliases.',
                         breakpoints: [
-                            { expression: 'alias-1', label: 'ALIAS-1', detail: '≤ 480px' },
-                            { expression: 'alias-2', label: 'ALIAS-2', detail: '481px - 799px' },
-                            { expression: 'alias-3', label: 'ALIAS-3', detail: '≥ 800px' }
+                            { expression: 'alias-1', label: 'ALIAS-1', detail: '≤ 767px' },
+                            { expression: 'alias-2', label: 'ALIAS-2', detail: '768px - 1199px' },
+                            { expression: 'alias-3', label: 'ALIAS-3', detail: '≥ 1200px' }
                         ],
                         stylesheets: [],
                         extraStyles: customBreakpointStyles,
