@@ -48,12 +48,16 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [0.0.1] - 2026-08-10
+
 ### Changed
 
 - JavaScript code modernized
+- Demos updated
 
 <!-- Links to be updated upon release -->
 
+[0.0.1]: https://github.com/ppfeufer/responsive-toolkit/commits/v0.0.1 "v0.0.1"
 [in development]: https://github.com/ppfeufer/responsive-toolkit/compare/v0.0.1...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
