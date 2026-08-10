@@ -114,6 +114,62 @@ body {
     margin-top: 1.5rem;
 }
 
+.showcase-section {
+    background: rgb(255 255 255);
+    border: 1px solid rgb(217 222 231);
+    border-radius: 0.75rem;
+    margin-top: 2rem;
+    padding: 1.25rem;
+}
+
+.showcase-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.showcase-copy {
+    color: rgb(76 90 112);
+    margin-bottom: 1rem;
+}
+
+.showcase-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.showcase-card {
+    background: rgb(248 250 255);
+    border: 1px solid rgb(232 236 243);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.showcase-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+}
+
+.showcase-card pre {
+    background: rgb(15 23 42);
+    border-radius: 0.5rem;
+    color: rgb(226 232 240);
+    font-size: 0.85rem;
+    margin: 0;
+    overflow-x: auto;
+    padding: 0.75rem;
+}
+
+.showcase-card pre code {
+    white-space: pre;
+}
+
+.showcase-card pre code.hljs {
+    background: transparent;
+    padding: 0;
+}
+
 @media (width <= 767px) {
     .site-topbar {
         align-items: flex-start;

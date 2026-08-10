@@ -377,18 +377,27 @@
                 `;
 
                 const customBreakpointStyles = `
-                    @media (width <= 767px) {
-                        .visible-custom-1 { display: block; }
-                        .visible-custom-2 { display: none;  }
-                        .visible-custom-3 { display: none;  }
-                    }
+                    /**
+                     * Custom Breakpoints Demo:
+                     *
+                     * custom-1 = mobile
+                     * custom-2 = tablet
+                     * custom-3 = desktop
+                     */
 
-                    @media (width >= 768px) and (width <= 1199px) {
+                    /* Mobile first: default to custom-1 on small screens. */
+                    .visible-custom-1 { display: block; }
+                    .visible-custom-2 { display: none;  }
+                    .visible-custom-3 { display: none;  }
+
+                    /* Tablet and up: switch visibility to custom-2. */
+                    @media (width >= 768px) {
                         .visible-custom-1 { display: none;  }
                         .visible-custom-2 { display: block; }
                         .visible-custom-3 { display: none;  }
                     }
 
+                    /* Desktop and up: switch visibility to custom-3. */
                     @media (width >= 1200px) {
                         .visible-custom-1 { display: none;  }
                         .visible-custom-2 { display: none;  }
@@ -622,8 +631,8 @@
                         currentLabel: 'ALIAS-1',
                         description: 'This frame uses inline custom breakpoint CSS and a custom breakpoint map to verify <code>viewport.use()</code> with user-defined aliases.',
                         breakpoints: [
-                            { expression: 'alias-1', label: 'ALIAS-1', detail: '≤ 767px' },
-                            { expression: 'alias-2', label: 'ALIAS-2', detail: '768px - 1199px' },
+                            { expression: 'alias-1', label: 'ALIAS-1', detail: '< 768px' },
+                            { expression: 'alias-2', label: 'ALIAS-2', detail: '≥ 768px, < 1200px' },
                             { expression: 'alias-3', label: 'ALIAS-3', detail: '≥ 1200px' }
                         ],
                         stylesheets: [],

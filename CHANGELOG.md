@@ -53,6 +53,10 @@ Section Order:
 - `src/test.html` file added to test the library in a browser during development
 - Give custom breakpoints more width, so they have a better chance of being used in demos
 
+### Changed
+
+- Demo pages improved by adding basic code examples
+
 ### Removed
 
 - Unnecessary Google Fonts from demo pages
