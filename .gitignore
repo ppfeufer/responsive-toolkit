@@ -1,4 +1,5 @@
-.sass-cache
-.DS_Store
-node_modules
-null
+/node_modules/
+/.make/config-overrides.ini
+/responsive-toolkit.zip
+/responsive-toolkit.min.js
+/responsive-toolkit.min.js.map

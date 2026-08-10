@@ -1,0 +1,73 @@
+/* Breakpoints for Bootstrap Toolkit 2.6.3 */
+
+/* Mobile-first base state
+------------------------------------------------------------------------------------- */
+:is(.responsive-toolkit-xs, .responsive-toolkit-sm, .responsive-toolkit-md, .responsive-toolkit-lg, .responsive-toolkit-xl, .responsive-toolkit-xxl) {
+    display: none;
+}
+
+/* Extra small devices are the default (less than 576px)
+------------------------------------------------------------------------------------- */
+.responsive-toolkit-xs {
+    display: block;
+}
+
+/* Small devices (landscape phones, 576px and up)
+------------------------------------------------------------------------------------- */
+@media (width >= 576px) {
+    .responsive-toolkit-xs {
+        display: none;
+    }
+
+    .responsive-toolkit-sm {
+        display: block;
+    }
+}
+
+/* Medium devices (tablets, 768px and up)
+------------------------------------------------------------------------------------- */
+@media (width >= 768px) {
+    .responsive-toolkit-sm {
+        display: none;
+    }
+
+    .responsive-toolkit-md {
+        display: block;
+    }
+}
+
+/* Large devices (desktops, 992px and up)
+------------------------------------------------------------------------------------- */
+@media (width >= 992px) {
+    .responsive-toolkit-md {
+        display: none;
+    }
+
+    .responsive-toolkit-lg {
+        display: block;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up)
+------------------------------------------------------------------------------------- */
+@media (width >= 1200px) {
+    .responsive-toolkit-lg {
+        display: none;
+    }
+
+    .responsive-toolkit-xl {
+        display: block;
+    }
+}
+
+/* Extra extra large devices (larger desktops, 1400px and up)
+------------------------------------------------------------------------------------- */
+@media (width >= 1400px) {
+    .responsive-toolkit-xl {
+        display: none;
+    }
+
+    .responsive-toolkit-xxl {
+        display: block;
+    }
+}

@@ -1,70 +1,59 @@
-### Changelog
+# Change Log
 
-**2.6.3**
-Propagating 2.6.2 changes correctly.
+All notable changes to this project will be documented in this file.
 
-**2.6.2**
-Removing issue with module.exports (issue #39).
+The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 
-**2.6.1**
-Adding CommonJS exports.
+<!--
+GitHub MD Syntax:
+https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
 
-**2.6.0**
-Registering the package in NPM registry and adding gulp build setup.
+Highlighting:
+https://docs.github.com/assets/cb-41128/mw-1440/images/help/writing/alerts-rendered.webp
 
-**2.5.1**
-Delaying the injection of visibility div container into `body` until `$(document).ready()`, and thus allowing the inclusion of library inside `<head>` section.
+> [!NOTE]
+>
+> Highlights information that users should take into account, even when skimming.
 
-**2.5.0**
-Introduced `use` method allowing to use custom visibility classes. Added built-in Foundation 5 support.
+> [!TIP]
+>
+> Optional information to help a user be more successful.
 
-More changes:
-* Changing mechanism initializing the library
-* Re-organizing the demos
-* Removing SASS-related part of the project
+> [!IMPORTANT]
+>
+> Crucial information necessary for users to succeed.
 
-**2.4.2**
-Refactoring 'changed' method (and updating usage examples in main.js) to solve issue [#14](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/issues/14).
+> [!WARNING]
+>
+> Urgent info that needs immediate user attention to avoid problems.
 
-Delaying the injection of visibility divs into `<body>` until `$(document).ready()`, and thus allowing the inclusion of library inside `<head>` section.
+> [!CAUTION]
+>
+> Advised about risks or negative outcomes of certain actions.
+-->
 
-**2.4.1**
+## [In Development] - Unreleased
 
-Updating Bootstrap visibility classes for future compliancy, updating documentation to reflect changes in version 2.4.0, and small code refactoring.
+<!--
+Section Order:
 
-**2.4.0**
+### Added
+### Fixed
+### Changed
+### Deprecated
+### Removed
+### Security
+### Miscellaneous
+-->
 
-Introducing comparison operators in the form of `viewport.is(">md").
+<!-- Your changes go here -->
 
-**2.3.0**
+### Changed
 
-Removing the requirement to insert visibility divs into the document.
+- JavaScript code modernized
 
-**2.2.0**
+<!-- Links to be updated upon release -->
 
-Introducing `current` method returning breakpoint alias, and `breakpoints` property allowing to specify your own breakpoint names.
-
-**2.1.0**
-
-Introducing `set` SASS mixin, making it easier to set different CSS property values per breakpoint.
-
-**2.0.0**
-
-Version 2.0.0 introduces internal method and property name changes. Using this version without making appropriate changes to your scripts will break them. Please proceed with caution.
-
-| old name            | new name |
-| ------------------- | -------- |
-| method `isBreakpoint`        | `is`     |
-| method `waitForFinalEvent`   | `changed`|
-| property `clock`      | `interval`|
-| property `timeString` | `timer`|
-
-For your convenience, version 1.5.0 of Responsive Bootstrap Toolkit is still kept inside this repository. You can find it at https://github.com/maciej-gurban/responsive-bootstrap-toolkit/blob/master/js/bootstrap-toolkit-1.5.0.js
-
-**1.5.0**
-
-Name-spacing functionalities, code improvements.
-
-**1.0.0**
-
-Initial realease containing bare JavaScript functions.
+[in development]: https://github.com/ppfeufer/responsive-toolkit/compare/v0.0.1...HEAD "In Development"
+[keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
+[semantic versioning]: http://semver.org/ "Semantic Versioning"

@@ -40,7 +40,7 @@ body {
     font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.12em;
-    min-width: 7.25rem;
+    min-width: 4.5rem;
     padding: 0.65rem 1rem;
     text-align: center;
     text-transform: uppercase;
@@ -55,7 +55,7 @@ body {
 .comparison-boxes {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
 .comparison-operator {
@@ -80,7 +80,7 @@ body {
 }
 
 .comparison-label {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 1.1;
 }

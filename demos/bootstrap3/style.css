@@ -1,7 +1,13 @@
+html {
+    font-size: 16px;
+}
+
 body {
     background: rgb(248 249 250);
     color: rgb(73 80 87);
     font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 .wrapper {
@@ -22,10 +28,12 @@ body {
 .site-topbar h1 {
     font-size: 1.5rem;
     font-weight: 300;
+    line-height: 1.2;
     margin: 0;
 }
 
 .demo-version {
+    display: block;
     font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -40,10 +48,15 @@ body {
     font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.12em;
-    min-width: 7.25rem;
+    min-width: 4.5rem;
     padding: 0.65rem 1rem;
     text-align: center;
     text-transform: uppercase;
+}
+
+.demo-main {
+    padding-bottom: 3rem;
+    padding-top: 3rem;
 }
 
 .demo-copy {
@@ -52,10 +65,14 @@ body {
     margin-bottom: 2rem;
 }
 
+.demo-copy code {
+    font-size: 1em;
+}
+
 .comparison-boxes {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
 .comparison-operator {
@@ -80,23 +97,24 @@ body {
 }
 
 .comparison-label {
-    font-size: 1.5rem;
+    font-size: 2.25rem;
     font-weight: 700;
     line-height: 1.1;
 }
 
 .comparison-detail {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     margin-top: 0.5rem;
     opacity: 0.85;
 }
 
 .status-note {
     color: rgb(108 117 125);
+    font-size: 1.05rem;
     margin-top: 1.5rem;
 }
 
-@media (width <= 575px) {
+@media (width <= 767px) {
     .site-topbar {
         align-items: flex-start;
         flex-direction: column;
