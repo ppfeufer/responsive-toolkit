@@ -52,6 +52,10 @@ Section Order:
 
 - `src/test.html` file added to test the library in a browser during development
 
+### Removed
+
+- Unnecessary Google Fonts from demo pages
+
 ## [0.0.2] - 2026-08-10
 
 ### Changed
