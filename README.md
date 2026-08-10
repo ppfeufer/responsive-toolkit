@@ -127,7 +127,7 @@ Instead of Bootstrap's aliases `xs`, `sm`, `md` and `lg`, Foundation uses: `smal
 ### Providing Your Own Breakpoints<a name="providing-your-own-breakpoints"></a>
 
 ```javascript
-(function($, viewport){
+(($, viewport) => {
 
     var myBreakpoints = {
         'alias-1': $('<div class="device-alias-1 visible-custom-1"></div>'),
