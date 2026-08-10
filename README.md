@@ -15,6 +15,7 @@ ______________________________________________________________________
   - [Using With Bootstrap 5](#using-with-bootstrap-5)
   - [Providing Your Own Breakpoints](#providing-your-own-breakpoints)
 - [Examples](#examples)
+- [Development](#development)
 
 <!-- mdformat-toc end -->
 
@@ -159,3 +160,33 @@ Some examples of how to use Responsive Toolkit can be found in the [demos](https
 - [Bootstrap 4](https://github.com/ppfeufer/responsive-toolkit/tree/master/demos/bootstrap4)
 - [Bootstrap 5](https://github.com/ppfeufer/responsive-toolkit/tree/master/demos/bootstrap5)
 - [Custom breakpoints](https://github.com/ppfeufer/responsive-toolkit/tree/master/demos/custom)
+
+## Development<a name="development"></a>
+
+To build the project, you need to have [Node.js](https://nodejs.org/) installed.
+Then, run the following commands in your terminal:
+
+```bash
+# Install dependencies
+npm install
+```
+
+Then, you can build the project using:
+
+```bash
+# Build the project
+npm run build
+
+# Alternatively, you can use a make command if you have make installed to build the
+# project (you still need to install the dependencies with `npm install` first):
+make build
+```
+
+The source files are located in the `src` folder, and the built files will be output to the `dist` folder.
+
+The `src` folder contains the following files:
+
+- `responsive-toolkit.css`: The default breakpoint detection CSS file, when `viewport.use` is not called.
+- `responsive-toolkit.js`: The main JavaScript file for the Responsive Toolkit.
+
+These files are development versions and not ready for production. The built files in the `dist` folder are minified and ready for production use.

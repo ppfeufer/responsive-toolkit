@@ -48,6 +48,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Added
+
+- `src/test.html` file added to test the library in a browser during development
+
 ## [0.0.2] - 2026-08-10
 
 ### Changed
