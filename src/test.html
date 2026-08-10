@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Responsive Toolkit Source Test</title>
+        <style>
+            :root {
+                color-scheme: light dark;
+                --page-bg: rgb(245 247 251);
+                --panel-bg: rgb(255 255 255);
+                --panel-border: #d7deea;
+                --text-main: rgb(31 41 55);
+                --text-muted: rgb(91 100 114);
+                --accent: rgb(37 99 235);
+                --accent-soft: rgb(37 99 235 / 12%);
+                --active-bg: rgb(34 197 94 / 12%);
+                --active-border: rgb(34 197 94 / 32%);
+                --shadow: 0 10px 30px rgb(15 23 42 / 8%);
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+                background: linear-gradient(180deg, rgb(248 250 252) 0%, rgb(238 242 255) 100%);
+                color: var(--text-main);
+            }
+
+            .page-shell {
+                max-width: 1680px;
+                margin: 0 auto;
+                padding: 24px;
+            }
+
+            .page-header {
+                display: grid;
+                gap: 12px;
+                margin-bottom: 24px;
+                padding: 24px;
+                border: 1px solid var(--panel-border);
+                border-radius: 20px;
+                background: rgb(255 255 255 / 85%);
+                box-shadow: var(--shadow);
+                backdrop-filter: blur(8px);
+            }
+
+            .page-header h1 {
+                margin: 0;
+                font-size: clamp(1.5rem, 2.5vw, 2.3rem);
+                line-height: 1.15;
+            }
+
+            .page-header p {
+                margin: 0;
+                color: var(--text-muted);
+                /*max-width: 72rem;*/
+            }
+
+            .tabs {
+                display: grid;
+                gap: 16px;
+            }
+
+            .tablist {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 14px;
+                border: 1px solid var(--panel-border);
+                border-radius: 18px;
+                background: rgb(255 255 255 / 86%);
+                box-shadow: var(--shadow);
+            }
+
+            .tab-button {
+                appearance: none;
+                border: 1px solid var(--panel-border);
+                border-radius: 999px;
+                padding: 10px 16px;
+                background: rgb(255 255 255);
+                color: var(--text-main);
+                font: inherit;
+                font-weight: 700;
+                cursor: pointer;
+                transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, transform 120ms ease;
+            }
+
+            .tab-button:hover {
+                transform: translateY(-1px);
+            }
+
+            .tab-button[aria-selected="true"] {
+                border-color: var(--accent);
+                background: var(--accent);
+                color: rgb(255 255 255);
+            }
+
+            .tab-button:focus-visible {
+                outline: 3px solid rgb(37 99 235 / 35%);
+                outline-offset: 2px;
+            }
+
+            .tab-panels {
+                display: grid;
+                gap: 16px;
+            }
+
+            .tab-panel {
+                display: grid;
+                gap: 10px;
+                padding: 16px;
+                border: 1px solid var(--panel-border);
+                border-radius: 18px;
+                background: rgb(255 255 255 / 86%);
+                box-shadow: var(--shadow);
+            }
+
+            .tab-panel[hidden] {
+                display: none;
+            }
+
+            .tab-panel__header {
+                display: grid;
+                gap: 4px;
+            }
+
+            .tab-panel__header h2 {
+                margin: 0;
+                font-size: 1rem;
+                line-height: 1.2;
+            }
+
+            .tab-panel__header p {
+                margin: 0;
+                font-size: 0.92rem;
+                color: var(--text-muted);
+            }
+
+            .preview-frame {
+                width: 100%;
+                min-height: 75vh;
+                border: 1px solid var(--panel-border);
+                border-radius: 14px;
+                background: rgb(255 255 255);
+                overflow: hidden;
+            }
+
+            .footer-note {
+                margin-top: 18px;
+                padding: 16px 18px;
+                border-left: 4px solid var(--accent);
+                border-radius: 12px;
+                background: var(--accent-soft);
+                color: var(--text-main);
+                font-size: 0.95rem;
+            }
+
+            code {
+                padding: 0.15rem 0.35rem;
+                border-radius: 6px;
+                background: rgb(15 23 42 / 8%);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page-shell">
+            <header class="page-header">
+                <h1>Responsive Toolkit source test</h1>
+                <p>
+                    This page opens one isolated preview for each supported framework plus a custom-breakpoint preview.
+                    Each frame loads the current <code>responsive-toolkit.js</code> source and exercises the matching
+                    breakpoint rules inline, so you can resize the browser and verify the active alias for every setup.
+                </p>
+            </header>
+
+            <main>
+                <div class="tabs">
+                    <div class="tablist" role="tablist" aria-label="Responsive Toolkit previews">
+                        <button class="tab-button" id="tab-default" type="button" role="tab" aria-selected="true" aria-controls="panel-default" data-frame-id="frame-default">Default</button>
+                        <button class="tab-button" id="tab-bootstrap3" type="button" role="tab" aria-selected="false" aria-controls="panel-bootstrap3" data-frame-id="frame-bootstrap3">Bootstrap 3</button>
+                        <button class="tab-button" id="tab-bootstrap4" type="button" role="tab" aria-selected="false" aria-controls="panel-bootstrap4" data-frame-id="frame-bootstrap4">Bootstrap 4</button>
+                        <button class="tab-button" id="tab-bootstrap5" type="button" role="tab" aria-selected="false" aria-controls="panel-bootstrap5" data-frame-id="frame-bootstrap5">Bootstrap 5</button>
+                        <button class="tab-button" id="tab-custom" type="button" role="tab" aria-selected="false" aria-controls="panel-custom" data-frame-id="frame-custom">Custom breakpoints</button>
+                    </div>
+
+                    <div class="tab-panels">
+                        <section class="tab-panel" id="panel-default" role="tabpanel" aria-labelledby="tab-default">
+                            <div class="tab-panel__header">
+                                <h2>Default breakpoints</h2>
+                                <p>Uses the toolkit default behavior and the inline <code>responsive-toolkit.css</code> rules.</p>
+                            </div>
+                            <iframe class="preview-frame" id="frame-default" title="Responsive Toolkit default breakpoints preview"></iframe>
+                        </section>
+
+                        <section class="tab-panel" id="panel-bootstrap3" role="tabpanel" aria-labelledby="tab-bootstrap3" hidden>
+                            <div class="tab-panel__header">
+                                <h2>Bootstrap 3</h2>
+                                <p>Exercises the Bootstrap 3 visibility classes supported by <code>viewport.use('Bootstrap3')</code>.</p>
+                            </div>
+                            <iframe class="preview-frame" id="frame-bootstrap3" title="Responsive Toolkit Bootstrap 3 preview"></iframe>
+                        </section>
+
+                        <section class="tab-panel" id="panel-bootstrap4" role="tabpanel" aria-labelledby="tab-bootstrap4" hidden>
+                            <div class="tab-panel__header">
+                                <h2>Bootstrap 4</h2>
+                                <p>Exercises the Bootstrap 4 visibility classes supported by <code>viewport.use('Bootstrap4')</code>.</p>
+                            </div>
+                            <iframe class="preview-frame" id="frame-bootstrap4" title="Responsive Toolkit Bootstrap 4 preview"></iframe>
+                        </section>
+
+                        <section class="tab-panel" id="panel-bootstrap5" role="tabpanel" aria-labelledby="tab-bootstrap5" hidden>
+                            <div class="tab-panel__header">
+                                <h2>Bootstrap 5</h2>
+                                <p>Exercises the Bootstrap 5 visibility classes supported by <code>viewport.use('Bootstrap5')</code>.</p>
+                            </div>
+                            <iframe class="preview-frame" id="frame-bootstrap5" title="Responsive Toolkit Bootstrap 5 preview"></iframe>
+                        </section>
+
+                        <section class="tab-panel" id="panel-custom" role="tabpanel" aria-labelledby="tab-custom" hidden>
+                            <div class="tab-panel__header">
+                                <h2>Custom breakpoints</h2>
+                                <p>Uses inline custom breakpoint CSS and a custom breakpoint map via <code>viewport.use()</code>.</p>
+                            </div>
+                            <iframe class="preview-frame" id="frame-custom" title="Responsive Toolkit custom breakpoints preview"></iframe>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="footer-note">
+                    Tip: resize the browser, then open the DevTools console inside any frame to watch the current
+                    breakpoint reported by <code>viewport.current()</code>.
+                </div>
+            </main>
+        </div>
+
+        <script>
+            (() => {
+                'use strict';
+
+                const toolkitScriptUrl = 'responsive-toolkit.js';
+
+                const sharedFrameStyles = `
+                    :root {
+                        color-scheme: light;
+                        --frame-bg: rgb(248 250 252);
+                        --frame-card: rgb(255 255 255);
+                        --frame-border: rgb(215 222 234);
+                        --frame-text: rgb(17 24 39);
+                        --frame-muted: rgb(91 100 114);
+                        --frame-accent: rgb(37 99 235);
+                        --frame-active-bg: rgb(34 197 94 / 12%);
+                        --frame-active-border: rgb(34 197 94 / 42%);
+                    }
+
+                    * {
+                        box-sizing: border-box;
+                    }
+
+                    html {
+                        font-size: 16px;
+                    }
+
+                    html, body {
+                        margin: 0;
+                        min-height: 100%;
+                        background: var(--frame-bg);
+                        color: var(--frame-text);
+                        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+                    }
+
+                    body {
+                        padding: 14px;
+                    }
+
+                    .wrapper {
+                        display: grid;
+                        gap: 14px;
+                    }
+
+                    .site-topbar {
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: space-between;
+                        gap: 12px;
+                        padding: 16px;
+                        border: 1px solid var(--frame-border);
+                        border-radius: 16px;
+                        background: var(--frame-card);
+                    }
+
+                    .site-topbar h1 {
+                        margin: 0;
+                        font-size: 1.1rem;
+                        line-height: 1.25;
+                    }
+
+                    .demo-version {
+                        display: block;
+                        margin-top: 4px;
+                        color: var(--frame-muted);
+                        font-size: 0.92rem;
+                        font-weight: 600;
+                    }
+
+                    .breakpoint-alias {
+                        min-width: 92px;
+                        padding: 10px 14px;
+                        border-radius: 999px;
+                        border: 1px solid var(--frame-border);
+                        background: var(--frame-accent);
+                        color: rgb(255 255 255);
+                        text-align: center;
+                        font-weight: 800;
+                        letter-spacing: 0.06em;
+                    }
+
+                    .demo-main {
+                        display: grid;
+                        gap: 14px;
+                    }
+
+                    .demo-copy,
+                    .status-note {
+                        margin: 0;
+                        color: var(--frame-muted);
+                        line-height: 1.55;
+                    }
+
+                    .comparison-boxes {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                        gap: 10px;
+                    }
+
+                    .comparison-operator {
+                        display: grid;
+                        gap: 4px;
+                        padding: 14px;
+                        border: 1px solid var(--frame-border);
+                        border-radius: 14px;
+                        background: rgb(255 255 255);
+                        transition: transform 120ms ease, border-color 120ms ease, background-color 120ms ease;
+                    }
+
+                    .comparison-operator.active {
+                        border-color: var(--frame-active-border);
+                        background: var(--frame-active-bg);
+                        transform: translateY(-1px);
+                    }
+
+                    .comparison-label {
+                        font-size: 0.98rem;
+                        font-weight: 800;
+                    }
+
+                    .comparison-detail {
+                        font-size: 0.86rem;
+                        color: var(--frame-muted);
+                    }
+
+                    code {
+                        padding: 0.12rem 0.35rem;
+                        border-radius: 6px;
+                        background: rgb(15 23 42 / 8%);
+                    }
+                `;
+
+                const customBreakpointStyles = `
+                    @media (width <= 480px) {
+                        .visible-custom-1 { display: block; }
+                        .visible-custom-2 { display: none; }
+                        .visible-custom-3 { display: none; }
+                    }
+
+                    @media (width >= 481px) and (width <= 799px) {
+                        .visible-custom-1 { display: none; }
+                        .visible-custom-2 { display: block; }
+                        .visible-custom-3 { display: none; }
+                    }
+
+                    @media (width >= 800px) {
+                        .visible-custom-1 { display: none; }
+                        .visible-custom-2 { display: none; }
+                        .visible-custom-3 { display: block; }
+                    }
+                `;
+
+                const frameBaseMeta = '<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">';
+
+                /**
+                 * Builds the HTML markup for the comparison cards based on the provided breakpoints.
+                 *
+                 * @param breakpoints
+                 * @returns {*}
+                 */
+                const buildCardMarkup = (breakpoints) => {
+                    return breakpoints.map((item) => `
+                        <div class="comparison-operator" data-expression="${item.expression}">
+                            <span class="comparison-label">${item.label}</span>
+                            <span class="comparison-detail">${item.detail}</span>
+                        </div>
+                    `).join('');
+                };
+
+                // No template strings here!
+                const openScriptTag = '<scr' + 'ipt>';
+                const openScriptSrcTag = (src) => '<scr' + 'ipt src="' + src + '">';
+                const closeScriptTag = '<\/scr' + 'ipt>';
+
+                /**
+                 * Builds the HTML markup for a preview frame based on the provided configuration.
+                 *
+                 * @param {{id: string, title: string, subtitle: string, currentLabel: string, description: string, breakpoints: [{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},null], stylesheets: string[], extraStyles: string, useMode: string, useName: null, customBreakpoints: null}|{id: string, title: string, subtitle: string, currentLabel: string, description: string, breakpoints: [{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string}], stylesheets: string[], extraStyles: string, useMode: string, useName: string, customBreakpoints: null}|{id: string, title: string, subtitle: string, currentLabel: string, description: string, breakpoints: [{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string}], stylesheets: string[], extraStyles: string, useMode: string, useName: string, customBreakpoints: null}|{id: string, title: string, subtitle: string, currentLabel: string, description: string, breakpoints: [{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},null], stylesheets: string[], extraStyles: string, useMode: string, useName: string, customBreakpoints: null}|{id: string, title: string, subtitle: string, currentLabel: string, description: string, breakpoints: [{expression: string, label: string, detail: string},{expression: string, label: string, detail: string},{expression: string, label: string, detail: string}], stylesheets: *[], extraStyles: string, useMode: string, useName: string, customBreakpoints: {'alias-1': string, 'alias-2': string, 'alias-3': string}}} config - The configuration object for the frame.
+                 * @param {string} config.title - The title of the frame.
+                 * @param {string} config.subtitle - The subtitle of the frame.
+                 * @param {string} config.currentLabel - The current label of the frame.
+                 * @param {Array} config.breakpoints - The breakpoints for the frame.
+                 * @param {string} config.useMode - The mode to use for the frame.
+                 * @param {string} config.useName - The name of the mode to use.
+                 * @param {Array} config.customBreakpoints - Custom breakpoints for the frame.
+                 * @param {string} config.extraStyles - Additional CSS styles for the frame.
+                 * @param {Array} config.stylesheets - External stylesheets for the frame.
+                 * @returns {string} - The HTML markup for the frame.
+                 */
+                const buildFrameHtml = (config) => {
+                    const styles = [sharedFrameStyles];
+
+                    if (config.extraStyles) {
+                        styles.push(config.extraStyles);
+                    }
+
+                    const frameworkLinks = (config.stylesheets || [])
+                        .map((href) => `<link rel="stylesheet" href="${href}">`)
+                        .join('');
+
+                    const frameConfig = {
+                        title: config.title,
+                        subtitle: config.subtitle,
+                        currentLabel: config.currentLabel,
+                        breakpoints: config.breakpoints,
+                        useMode: config.useMode,
+                        useName: config.useName,
+                        customBreakpoints: config.customBreakpoints
+                    };
+
+                    return `
+                    <!DOCTYPE html>
+                    <html lang="en">
+                        <head>
+                            ${frameBaseMeta}
+                            ${frameworkLinks}
+                            <style>${styles.join('\n')}</style>
+                        </head>
+
+                        <body>
+                            ${openScriptTag}
+                                window.__RT_TEST_CONFIG__ = ${JSON.stringify(frameConfig)};
+                            ${closeScriptTag}
+
+                            <div class="wrapper">
+                                <div class="site-topbar">
+                                    <div>
+                                        <h1>${config.title}<span class="demo-version">${config.subtitle}</span></h1>
+                                    </div>
+                                    <div class="breakpoint-alias" aria-live="polite">${config.currentLabel}</div>
+                                </div>
+
+                                <main class="demo-main">
+                                    <p class="demo-copy">
+                                        ${config.description}
+                                    </p>
+
+                                    <div class="comparison-boxes">
+                                        ${buildCardMarkup(config.breakpoints)}
+                                    </div>
+
+                                    <p class="status-note">Open the console in this frame to watch the active breakpoint as you resize.</p>
+                                </main>
+                            </div>
+
+                            ${openScriptSrcTag('https://code.jquery.com/jquery-3.7.1.min.js')}${closeScriptTag}
+                            ${openScriptSrcTag(toolkitScriptUrl)}${closeScriptTag}
+                            ${openScriptTag}
+                                (function ($, window, document, viewport, config) {
+                                    'use strict';
+
+                                    const updateDemo = () => {
+                                        const currentBreakpoint = viewport.current();
+
+                                        $('.breakpoint-alias').text(String(currentBreakpoint).toUpperCase());
+                                        $('.comparison-operator').each((_, element) => {
+                                            const $element = $(element);
+
+                                            $element.toggleClass('active', viewport.is($element.data('expression')));
+                                        });
+                                    };
+
+                                    if (config.useMode === 'custom') {
+                                        const customBreakpoints = {};
+
+                                        Object.keys(config.customBreakpoints).forEach((alias) => {
+                                            customBreakpoints[alias] = $(config.customBreakpoints[alias]);
+                                        });
+
+                                        viewport.use(config.useName, customBreakpoints);
+                                    } else if (config.useName) {
+                                        viewport.use(config.useName);
+                                    }
+
+                                    $(document).ready(() => {
+                                        updateDemo();
+
+                                        console.log('Current breakpoint:', viewport.current());
+                                    });
+
+                                    $(window).resize(
+                                        viewport.changed(() => {
+                                            updateDemo();
+
+                                            console.log('Current breakpoint:', viewport.current());
+                                        })
+                                    );
+                                })(jQuery, window, document, ResponsiveToolkit, window.__RT_TEST_CONFIG__);
+                            ${closeScriptTag}
+                        </body>
+                    </html>`;
+                };
+
+                const frames = [
+                    {
+                        id: 'frame-default',
+                        title: 'Responsive Toolkit',
+                        subtitle: 'Default breakpoints source test',
+                        currentLabel: 'XS',
+                        description: 'This frame uses the toolkit default behavior with the current <code>responsive-toolkit.css</code> source loaded from the source folder.',
+                        breakpoints: [
+                            { expression: 'xs', label: 'XS', detail: '< 576px' },
+                            { expression: 'sm', label: 'SM', detail: '≥ 576px' },
+                            { expression: 'md', label: 'MD', detail: '≥ 768px' },
+                            { expression: 'lg', label: 'LG', detail: '≥ 992px' },
+                            { expression: 'xl', label: 'XL', detail: '≥ 1200px' },
+                            { expression: 'xxl', label: 'XXL', detail: '≥ 1400px' }
+                        ],
+                        stylesheets: ['responsive-toolkit.css'],
+                        extraStyles: '',
+                        useMode: 'default',
+                        useName: null,
+                        customBreakpoints: null
+                    },
+                    {
+                        id: 'frame-bootstrap3',
+                        title: 'Responsive Toolkit',
+                        subtitle: 'Bootstrap 3 source test',
+                        currentLabel: 'XS',
+                        description: 'This frame loads Bootstrap 3 and calls <code>viewport.use(\'Bootstrap3\')</code> to verify the Bootstrap 3 breakpoint detectors.',
+                        breakpoints: [
+                            { expression: 'xs', label: 'XS', detail: '< 768px' },
+                            { expression: 'sm', label: 'SM', detail: '≥ 768px' },
+                            { expression: 'md', label: 'MD', detail: '≥ 992px' },
+                            { expression: 'lg', label: 'LG', detail: '≥ 1200px' }
+                        ],
+                        stylesheets: ['https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css'],
+                        extraStyles: '',
+                        useMode: 'framework',
+                        useName: 'Bootstrap3',
+                        customBreakpoints: null
+                    },
+                    {
+                        id: 'frame-bootstrap4',
+                        title: 'Responsive Toolkit',
+                        subtitle: 'Bootstrap 4 source test',
+                        currentLabel: 'XS',
+                        description: 'This frame loads Bootstrap 4 and calls <code>viewport.use(\'Bootstrap4\')</code> to verify the Bootstrap 4 breakpoint detectors.',
+                        breakpoints: [
+                            { expression: 'xs', label: 'XS', detail: '< 576px' },
+                            { expression: 'sm', label: 'SM', detail: '≥ 576px' },
+                            { expression: 'md', label: 'MD', detail: '≥ 768px' },
+                            { expression: 'lg', label: 'LG', detail: '≥ 992px' },
+                            { expression: 'xl', label: 'XL', detail: '≥ 1200px' }
+                        ],
+                        stylesheets: ['https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css'],
+                        extraStyles: '',
+                        useMode: 'framework',
+                        useName: 'Bootstrap4',
+                        customBreakpoints: null
+                    },
+                    {
+                        id: 'frame-bootstrap5',
+                        title: 'Responsive Toolkit',
+                        subtitle: 'Bootstrap 5 source test',
+                        currentLabel: 'XS',
+                        description: 'This frame loads Bootstrap 5 and calls <code>viewport.use(\'Bootstrap5\')</code> to verify the Bootstrap 5 breakpoint detectors.',
+                        breakpoints: [
+                            { expression: 'xs', label: 'XS', detail: '< 576px' },
+                            { expression: 'sm', label: 'SM', detail: '≥ 576px' },
+                            { expression: 'md', label: 'MD', detail: '≥ 768px' },
+                            { expression: 'lg', label: 'LG', detail: '≥ 992px' },
+                            { expression: 'xl', label: 'XL', detail: '≥ 1200px' },
+                            { expression: 'xxl', label: 'XXL', detail: '≥ 1400px' }
+                        ],
+                        stylesheets: ['https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'],
+                        extraStyles: '',
+                        useMode: 'framework',
+                        useName: 'Bootstrap5',
+                        customBreakpoints: null
+                    },
+                    {
+                        id: 'frame-custom',
+                        title: 'Responsive Toolkit',
+                        subtitle: 'Custom breakpoints source test',
+                        currentLabel: 'ALIAS-1',
+                        description: 'This frame uses inline custom breakpoint CSS and a custom breakpoint map to verify <code>viewport.use()</code> with user-defined aliases.',
+                        breakpoints: [
+                            { expression: 'alias-1', label: 'ALIAS-1', detail: '≤ 480px' },
+                            { expression: 'alias-2', label: 'ALIAS-2', detail: '481px - 799px' },
+                            { expression: 'alias-3', label: 'ALIAS-3', detail: '≥ 800px' }
+                        ],
+                        stylesheets: [],
+                        extraStyles: customBreakpointStyles,
+                        useMode: 'custom',
+                        useName: 'MyBreakpoints',
+                        customBreakpoints: {
+                            'alias-1': '<div class="device-alias-1 visible-custom-1"></div>',
+                            'alias-2': '<div class="device-alias-2 visible-custom-2"></div>',
+                            'alias-3': '<div class="device-alias-3 visible-custom-3"></div>'
+                        }
+                    }
+                ];
+
+                frames.forEach((frame) => {
+                    frame.srcdoc = buildFrameHtml(frame);
+                });
+
+                const frameMap = frames.reduce((accumulator, frame) => {
+                    accumulator[frame.id] = frame;
+
+                    return accumulator;
+                }, {});
+
+                const tabButtons = Array.from(document.querySelectorAll('.tab-button'));
+
+                const triggerFrameResize = (iframe) => {
+                    if (!iframe || !iframe.contentWindow) {
+                        return;
+                    }
+
+                    try {
+                        iframe.contentWindow.dispatchEvent(new Event('resize'));
+                    } catch (error) {
+                        void error;
+                    }
+                };
+
+                const ensureFrameLoaded = (frameId) => {
+                    const frame = frameMap[frameId];
+                    const iframe = document.getElementById(frameId);
+
+                    if (!frame || !iframe || iframe.dataset.loaded === 'true') {
+                        return iframe;
+                    }
+
+                    iframe.srcdoc = frame.srcdoc;
+                    iframe.dataset.loaded = 'true';
+
+                    return iframe;
+                };
+
+                const activateTab = (frameId, shouldFocus = false) => {
+                    const panelId = frameId.replace('frame-', 'panel-');
+                    const iframe = ensureFrameLoaded(frameId);
+
+                    tabButtons.forEach((button) => {
+                        const isActive = button.dataset.frameId === frameId;
+
+                        button.setAttribute('aria-selected', String(isActive));
+
+                        if (isActive && shouldFocus) {
+                            button.focus();
+                        }
+                    });
+
+                    document.querySelectorAll('.tab-panel').forEach((panel) => {
+                        panel.hidden = panel.id !== panelId;
+                    });
+
+                    if (iframe) {
+                        window.requestAnimationFrame(() => {
+                            triggerFrameResize(iframe);
+                        });
+                    }
+                };
+
+                tabButtons.forEach((button) => {
+                    button.addEventListener('click', () => {
+                        activateTab(button.dataset.frameId);
+                    });
+                });
+
+                activateTab('frame-default');
+            })();
+        </script>
+    </body>
+</html>
