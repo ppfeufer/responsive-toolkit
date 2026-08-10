@@ -18,3 +18,4 @@ CODEOWNERS export-ignore
 /responsive-toolkit.js export-ignore
 /responsive-toolkit.min.js export-ignore
 /responsive-toolkit.min.js.map export-ignore
+src export-ignore

@@ -1,5 +1,7 @@
 /node_modules/
 /.make/config-overrides.ini
 /responsive-toolkit.zip
-/responsive-toolkit.min.js
-/responsive-toolkit.min.js.map
+/src/responsive-toolkit.min.js
+/src/responsive-toolkit.min.js.map
+/src/responsive-toolkit.min.css
+/src/responsive-toolkit.min.css.map
