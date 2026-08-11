@@ -139,7 +139,6 @@ body {
 }
 
 .showcase-card {
-    background: rgb(248 250 255);
     border: 1px solid rgb(232 236 243);
     border-radius: 0.5rem;
     padding: 1rem;
@@ -152,7 +151,7 @@ body {
 }
 
 .showcase-card pre {
-    background: rgb(15 23 42);
+    background: rgb(248 250 255);
     border-radius: 0.5rem;
     color: rgb(226 232 240);
     font-size: 0.85rem;
