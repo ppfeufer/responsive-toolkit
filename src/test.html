@@ -182,7 +182,8 @@
             <main>
                 <div class="tabs">
                     <div class="tablist" role="tablist" aria-label="Responsive Toolkit previews">
-                        <button class="tab-button" id="tab-default" type="button" role="tab" aria-selected="true" aria-controls="panel-default" data-frame-id="frame-default">Default</button>
+                        <button class="tab-button" id="tab-default" type="button" role="tab" aria-selected="true" aria-controls="panel-default" data-frame-id="frame-default">Default (jQuery 3)</button>
+                        <button class="tab-button" id="tab-default-jquery4" type="button" role="tab" aria-selected="false" aria-controls="panel-default-jquery4" data-frame-id="frame-default-jquery4">Default (jQuery 4)</button>
                         <button class="tab-button" id="tab-bootstrap3" type="button" role="tab" aria-selected="false" aria-controls="panel-bootstrap3" data-frame-id="frame-bootstrap3">Bootstrap 3</button>
                         <button class="tab-button" id="tab-bootstrap4" type="button" role="tab" aria-selected="false" aria-controls="panel-bootstrap4" data-frame-id="frame-bootstrap4">Bootstrap 4</button>
                         <button class="tab-button" id="tab-bootstrap5" type="button" role="tab" aria-selected="false" aria-controls="panel-bootstrap5" data-frame-id="frame-bootstrap5">Bootstrap 5</button>
@@ -192,11 +193,20 @@
                     <div class="tab-panels">
                         <section class="tab-panel" id="panel-default" role="tabpanel" aria-labelledby="tab-default">
                             <div class="tab-panel__header">
-                                <h2>Default breakpoints</h2>
+                                <h2>Default breakpoints (jQuery 3)</h2>
                                 <p>Uses the toolkit default behavior and the inline <code>responsive-toolkit.css</code> rules.</p>
                             </div>
 
-                            <iframe class="preview-frame" id="frame-default" title="Responsive Toolkit default breakpoints preview"></iframe>
+                            <iframe class="preview-frame" id="frame-default" title="Responsive Toolkit default breakpoints preview (jQuery 3)"></iframe>
+                        </section>
+
+                        <section class="tab-panel" id="panel-default-jquery4" role="tabpanel" aria-labelledby="tab-default-jquery4" hidden>
+                            <div class="tab-panel__header">
+                                <h2>Default breakpoints (jQuery 4)</h2>
+                                <p>Uses the toolkit default behavior and the inline <code>responsive-toolkit.css</code> rules, but loads jQuery 4 instead of jQuery 3.</p>
+                            </div>
+
+                            <iframe class="preview-frame" id="frame-default-jquery4" title="Responsive Toolkit default breakpoints preview (jQuery 4)"></iframe>
                         </section>
 
                         <section class="tab-panel" id="panel-bootstrap3" role="tabpanel" aria-labelledby="tab-bootstrap3" hidden>
@@ -424,8 +434,18 @@
 
                 // No template strings here!
                 const openScriptTag = '<scr' + 'ipt>';
-                const openScriptSrcTag = (src) => '<scr' + 'ipt src="' + src + '">';
                 const closeScriptTag = '<\/scr' + 'ipt>';
+
+                /**
+                 * Builds the opening <script> tag with optional integrity and crossorigin attributes.
+                 *
+                 * @param {string} src - The source URL of the script.
+                 * @param {string} [sri=''] - The Subresource Integrity (SRI) hash for the script.
+                 * @returns {string} - The opening <script> tag with the specified attributes.
+                 */
+                const openScriptSrcTag = (src, sri = '') => {
+                    return '<scr' + 'ipt src="' + src + '"' + (sri ? ' integrity="' + sri + '" crossorigin="anonymous"' : '') + '>';
+                };
 
                 /**
                  * Builds the HTML markup for a preview frame based on the provided configuration.
@@ -462,6 +482,20 @@
                         useName: config.useName,
                         customBreakpoints: config.customBreakpoints
                     };
+
+                    const jqueryVersion = {
+                        3: {
+                            url: 'https://code.jquery.com/jquery-3.7.1.min.js',
+                            sri: 'sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo='
+                        },
+                        4: {
+                            url: 'https://code.jquery.com/jquery-4.0.0.min.js',
+                            sri: 'sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao='
+                        }
+                    };
+
+                    const selectedJqueryVersion = config.jquery ? jqueryVersion[config.jquery] : jqueryVersion[3];
+                    const jqueryScriptTag = openScriptSrcTag(selectedJqueryVersion.url, selectedJqueryVersion.sri);
 
                     return `
                     <!DOCTYPE html>
@@ -513,7 +547,8 @@
                                 </main>
                             </div>
 
-                            ${openScriptSrcTag('https://code.jquery.com/jquery-3.7.1.min.js')}${closeScriptTag}
+                            ${jqueryScriptTag}${closeScriptTag}
+
                             ${openScriptSrcTag(toolkitScriptUrl)}${closeScriptTag}
                             ${openScriptTag}
                                 (function ($, window, document, viewport, config) {
@@ -566,7 +601,7 @@
                     {
                         id: 'frame-default',
                         title: 'Responsive Toolkit',
-                        subtitle: 'Default breakpoints source test',
+                        subtitle: 'Default breakpoints source test (jQuery 3)',
                         currentLabel: 'XS',
                         description: 'This frame uses the toolkit default behavior with the current <code>responsive-toolkit.css</code> source loaded from the source folder.',
                         breakpoints: [
@@ -582,6 +617,27 @@
                         useMode: 'default',
                         useName: null,
                         customBreakpoints: null
+                    },
+                    {
+                        id: 'frame-default-jquery4',
+                        title: 'Responsive Toolkit',
+                        subtitle: 'Default breakpoints source test (jQuery 4)',
+                        currentLabel: 'XS',
+                        description: 'This frame uses the toolkit default behavior with the current <code>responsive-toolkit.css</code> source loaded from the source folder, but with jQuery 4.',
+                        breakpoints: [
+                            { expression: 'xs', label: 'XS', detail: '< 576px' },
+                            { expression: 'sm', label: 'SM', detail: '≥ 576px' },
+                            { expression: 'md', label: 'MD', detail: '≥ 768px' },
+                            { expression: 'lg', label: 'LG', detail: '≥ 992px' },
+                            { expression: 'xl', label: 'XL', detail: '≥ 1200px' },
+                            { expression: 'xxl', label: 'XXL', detail: '≥ 1400px' }
+                        ],
+                        stylesheets: ['responsive-toolkit.css'],
+                        extraStyles: '',
+                        useMode: 'default',
+                        useName: null,
+                        customBreakpoints: null,
+                        jquery: 4
                     },
                     {
                         id: 'frame-bootstrap3',
