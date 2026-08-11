@@ -1,0 +1,1 @@
+@layer responsive{.visible-custom-1{display:block}.visible-custom-2{display:none}.visible-custom-3{display:none}@media(width >= 768px){.visible-custom-1{display:none}.visible-custom-2{display:block}}@media(width >= 1200px){.visible-custom-2{display:none}.visible-custom-3{display:block}}}/*# sourceMappingURL=custom-breakpoints.min.css.map */
