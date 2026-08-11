@@ -56,6 +56,7 @@ Section Order:
 ### Changed
 
 - Demo pages improved by adding basic code examples
+- `highlightJS` theme changed to `github` on demo pages
 
 ### Removed
 

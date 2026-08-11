@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Responsive Toolkit (Custom Breakpoints)</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github-dark.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github.min.css" rel="stylesheet">
         <link href="style.min.css" rel="stylesheet">
         <link href="custom-breakpoints.min.css" rel="stylesheet">
     </head>
@@ -59,28 +59,40 @@
                                     <pre><code class="language-css">/**
  * Custom Breakpoints Demo:
  *
- * custom-1 = mobile
- * custom-2 = tablet
- * custom-3 = desktop
+ * custom-1 = mobile (default, < 768px)
+ * custom-2 = tablet (768px - 1199px)
+ * custom-3 = desktop (>= 1200px)
  */
 
-/* Mobile first: default to custom-1 on small screens. */
-.visible-custom-1 { display: block; }
-.visible-custom-2 { display: none;  }
-.visible-custom-3 { display: none;  }
+@layer responsive {
+    /**
+     * Mobile first: default to custom-1 on small screens.
+     *
+     * Show custom-1 and hide custom-2 and custom-3 when the viewport width is less than 768px.
+     */
+    .visible-custom-1 { display: block; }
+    .visible-custom-2 { display: none; }
+    .visible-custom-3 { display: none; }
 
-/* Tablet and up: switch visibility to custom-2. */
-@media (width >= 768px) {
-    .visible-custom-1 { display: none;  }
-    .visible-custom-2 { display: block; }
-    .visible-custom-3 { display: none;  }
-}
+    /**
+     * Tablet and up: switch visibility to custom-2.
+     *
+     * Hide custom-1 and show custom-2 when the viewport width is 768px or greater.
+     */
+    @media (width >= 768px) {
+        .visible-custom-1 { display: none; }
+        .visible-custom-2 { display: block; }
+    }
 
-/* Desktop and up: switch visibility to custom-3. */
-@media (width >= 1200px) {
-    .visible-custom-1 { display: none;  }
-    .visible-custom-2 { display: none;  }
-    .visible-custom-3 { display: block; }
+    /**
+     * Desktop and up: switch visibility to custom-3.
+     *
+     * Hide custom-2 and show custom-3 when the viewport width is 1200px or greater.
+     */
+    @media (width >= 1200px) {
+        .visible-custom-2 { display: none; }
+        .visible-custom-3 { display: block; }
+    }
 }</code></pre>
                                 </article>
 
