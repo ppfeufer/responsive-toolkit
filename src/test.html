@@ -585,7 +585,7 @@
 
                             ${openScriptSrcTag(toolkitScriptUrl)}${closeScriptTag}
                             ${openScriptTag}
-                                (function ($, window, document, viewport, config) {
+                                (($, viewport, config) => {
                                     'use strict';
 
                                     const updateDemo = () => {
@@ -625,7 +625,7 @@
                                             console.log('Current breakpoint:', viewport.current());
                                         })
                                     );
-                                })(jQuery, window, document, ResponsiveToolkit, window.__RT_TEST_CONFIG__);
+                                })(jQuery, ResponsiveToolkit, window.__RT_TEST_CONFIG__);
                             ${closeScriptTag}
                         </body>
                     </html>`;

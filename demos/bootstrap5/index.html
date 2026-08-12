@@ -59,7 +59,9 @@
                         <section class="showcase-section" aria-labelledby="showcase-title">
                             <h2 class="showcase-title" id="showcase-title">Showcase: How to use Responsive Toolkit</h2>
                             <p class="showcase-copy">
-                                This page showcases the Bootstrap 5 behavior: include assets, call <code>viewport.use('Bootstrap5')</code>, then query breakpoint aliases.
+                                This page showcases the Bootstrap 5 behavior: include
+                                assets, call <code>viewport.use('Bootstrap5')</code>
+                                before the document ready event, then query breakpoint aliases.
                             </p>
                             <div class="showcase-grid">
                                 <article class="showcase-card">
@@ -76,7 +78,7 @@
 (($, viewport) =&gt; {
     'use strict';
 
-    // Set viewports to Bootstrap 5 breakpoints
+    // Set viewports to Bootstrap 5 breakpoints (This needs to be done before the document ready event)
     viewport.use('Bootstrap5');
 
     $(document).ready(() =&gt; {
