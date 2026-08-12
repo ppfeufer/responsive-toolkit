@@ -7,74 +7,101 @@
  * @link https://github.com/ppfeufer/responsive-toolkit
  */
 
-/* Mobile-first base state
-------------------------------------------------------------------------------------- */
-:is(.responsive-toolkit-xs, .responsive-toolkit-sm, .responsive-toolkit-md, .responsive-toolkit-lg, .responsive-toolkit-xl, .responsive-toolkit-xxl) {
-    display: none;
-}
+@layer base, responsive;
 
-/* Extra small devices are the default (less than 576px)
-------------------------------------------------------------------------------------- */
-.responsive-toolkit-xs {
-    display: block;
-}
+/**
+ * Default Breakpoints:
+ *
+ * xs: Extra small devices (portrait phones, <576px)
+ * sm: Small devices (landscape phones, ≥576px)
+ * md: Medium devices (portrait tablets, ≥768px)
+ * lg: Large devices (landscape tablets, ≥992px)
+ * xl: Extra large devices (desktops, ≥1200px)
+ * xxl: Extra extra large devices (larger desktops, ≥1400px)
+ */
 
-/* Small devices (landscape phones, 576px and up)
-------------------------------------------------------------------------------------- */
-@media (width >= 576px) {
+@layer base {
+    /* Mobile-first: default to xs on small screens
+     *
+     * Show xs and hide sm, md, lg, xl, xxl by default
+    --------------------------------------------------------------------------------- */
+    :is(.responsive-toolkit-xs, .responsive-toolkit-sm, .responsive-toolkit-md, .responsive-toolkit-lg, .responsive-toolkit-xl, .responsive-toolkit-xxl) {
+        display: none;
+    }
+
     .responsive-toolkit-xs {
-        display: none;
-    }
-
-    .responsive-toolkit-sm {
         display: block;
     }
 }
 
-/* Medium devices (tablets, 768px and up)
-------------------------------------------------------------------------------------- */
-@media (width >= 768px) {
-    .responsive-toolkit-sm {
-        display: none;
+@layer responsive {
+    /* Small devices (landscape phones, 576px and up): Switch visibility to sm
+     *
+     * Show sm and hide xs, md, lg, xl, xxl when the viewport width is 576px or greater
+    --------------------------------------------------------------------------------- */
+    @media (width >= 576px) {
+        .responsive-toolkit-xs {
+            display: none;
+        }
+
+        .responsive-toolkit-sm {
+            display: block;
+        }
     }
 
-    .responsive-toolkit-md {
-        display: block;
-    }
-}
+    /* Medium devices (portrait tablets, 768px and up): Switch visibility to md
+     *
+     * Show md and hide xs, sm, lg, xl, xxl when the viewport width is 768px or greater
+    --------------------------------------------------------------------------------- */
+    @media (width >= 768px) {
+        .responsive-toolkit-sm {
+            display: none;
+        }
 
-/* Large devices (desktops, 992px and up)
-------------------------------------------------------------------------------------- */
-@media (width >= 992px) {
-    .responsive-toolkit-md {
-        display: none;
-    }
-
-    .responsive-toolkit-lg {
-        display: block;
-    }
-}
-
-/* Extra large devices (large desktops, 1200px and up)
-------------------------------------------------------------------------------------- */
-@media (width >= 1200px) {
-    .responsive-toolkit-lg {
-        display: none;
+        .responsive-toolkit-md {
+            display: block;
+        }
     }
 
-    .responsive-toolkit-xl {
-        display: block;
-    }
-}
+    /* Large devices (landscape tablets, 992px and up): Switch visibility to lg
+     *
+     * Show lg and hide xs, sm, md, xl, xxl when the viewport width is 992px or greater
+    --------------------------------------------------------------------------------- */
+    @media (width >= 992px) {
+        .responsive-toolkit-md {
+            display: none;
+        }
 
-/* Extra extra large devices (larger desktops, 1400px and up)
-------------------------------------------------------------------------------------- */
-@media (width >= 1400px) {
-    .responsive-toolkit-xl {
-        display: none;
+        .responsive-toolkit-lg {
+            display: block;
+        }
     }
 
-    .responsive-toolkit-xxl {
-        display: block;
+    /* Extra large devices (desktops, 1200px and up): Switch visibility to xl
+     *
+     * Show xl and hide xs, sm, md, lg, xxl when the viewport width is 1200px or greater
+    --------------------------------------------------------------------------------- */
+    @media (width >= 1200px) {
+        .responsive-toolkit-lg {
+            display: none;
+        }
+
+        .responsive-toolkit-xl {
+            display: block;
+        }
+    }
+
+    /* Extra extra large devices (larger desktops, 1400px and up): Switch visibility to xxl
+     *
+     * Show xxl and hide xs, sm, md, lg, xl when the viewport width is 1400px or greater
+    --------------------------------------------------------------------------------- */
+    @media (width >= 1400px) {
+        .responsive-toolkit-xl {
+            display: none;
+        }
+
+        .responsive-toolkit-xxl {
+            display: block;
+        }
     }
 }
