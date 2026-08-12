@@ -23,4 +23,4 @@ Makefile
 docs
 CODEOWNERS
 /responsive-toolkit.*
-src
+/src
