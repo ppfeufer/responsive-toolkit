@@ -50,7 +50,9 @@
                         <section class="showcase-section" aria-labelledby="showcase-title">
                             <h2 class="showcase-title" id="showcase-title">Showcase: How to use Responsive Toolkit</h2>
                             <p class="showcase-copy">
-                                This page showcases the Bootstrap 4 behavior: include assets, call <code>viewport.use('Bootstrap4')</code>, then query breakpoint aliases.
+                                This page showcases the Bootstrap 4 behavior: include
+                                assets, call <code>viewport.use('Bootstrap4')</code>
+                                before the document ready event, then query breakpoint aliases.
                             </p>
                             <div class="showcase-grid">
                                 <article class="showcase-card">
@@ -67,7 +69,7 @@
 (($, viewport) =&gt; {
     'use strict';
 
-    // Set viewports to Bootstrap 4 breakpoints
+    // Set viewports to Bootstrap 4 breakpoints (This needs to be done before the document ready event)
     viewport.use('Bootstrap4');
 
     $(document).ready(() =&gt; {

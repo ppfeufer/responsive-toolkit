@@ -45,7 +45,9 @@
                         <section class="showcase-section" aria-labelledby="showcase-title">
                             <h2 class="showcase-title" id="showcase-title">Showcase: How to use Responsive Toolkit</h2>
                             <p class="showcase-copy">
-                                This page showcases the custom breakpoint behavior: include assets, call <code>viewport.use('MyBreakpoints', myBreakpoints)</code> with your custom breakpoints, then query breakpoint aliases.
+                                This page showcases the custom breakpoint behavior:
+                                include assets, call <code>viewport.use('MyBreakpoints', myBreakpoints)</code>
+                                with your custom breakpoints before the document ready event, then query breakpoint aliases.
                             </p>
                             <div class="showcase-grid">
                                 <article class="showcase-card">
@@ -133,7 +135,7 @@
         'alias-3': $('&lt;div class="device-alias-3 visible-custom-3"&gt;&lt;/div&gt;')
     };
 
-    // Set viewports to custom breakpoints
+    // Set viewports to custom breakpoints (This needs to be done before the document ready event)
     viewport.use('MyBreakpoints', myBreakpoints);
 
     $(document).ready(() =&gt; {
