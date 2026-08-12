@@ -1,7 +1,7 @@
 {
     "author": "Peter Pfeufer",
     "name": "@ppfeufer/responsive-toolkit",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Responsive Toolkit allows for easy breakpoint detection in JavaScript",
     "license": "GPL-3.0-or-later",
     "type": "module",

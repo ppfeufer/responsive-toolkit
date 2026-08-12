@@ -48,20 +48,17 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [0.0.3] - 2026-08-12
+
 ### Added
 
 - `src/test.html` file added to test the library in a browser during development
-- Give custom breakpoints more width, so they have a better chance of being used in demos
-
-### Fixed
-
-- JS and JS examples in demo pages
 
 ### Changed
 
 - CSS restructured
 - Demo pages improved by adding basic code examples
-- `highlightJS` theme changed to `github` on demo pages
+- Give custom breakpoints more width, so they have a better chance of being used in demos
 
 ### Removed
 
@@ -84,6 +81,7 @@ Section Order:
 
 [0.0.1]: https://github.com/ppfeufer/responsive-toolkit/commits/v0.0.1 "v0.0.1"
 [0.0.2]: https://github.com/ppfeufer/responsive-toolkit/compare/v0.0.1...v0.0.2 "v0.0.2"
-[in development]: https://github.com/ppfeufer/responsive-toolkit/compare/v0.0.2...HEAD "In Development"
+[0.0.3]: https://github.com/ppfeufer/responsive-toolkit/compare/v0.0.2...v0.0.3 "v0.0.3"
+[in development]: https://github.com/ppfeufer/responsive-toolkit/compare/v0.0.3...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
