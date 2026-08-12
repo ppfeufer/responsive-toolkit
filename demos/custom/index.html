@@ -56,7 +56,7 @@
 
                                 <article class="showcase-card">
                                     <h3>2) Custom Breakpoints CSS</h3>
-                                    <pre><code class="language-css">/**
+                                    <pre><code class="language-css">/*!
  * Custom Breakpoints Demo:
  *
  * custom-1 = mobile (default, < 768px)
@@ -64,24 +64,41 @@
  * custom-3 = desktop (>= 1200px)
  */
 
-@layer responsive {
+@layer base, responsive;
+
+@layer base {
     /**
      * Mobile first: default to custom-1 on small screens.
      *
      * Show custom-1 and hide custom-2 and custom-3 when the viewport width is less than 768px.
      */
-    .visible-custom-1 { display: block; }
-    .visible-custom-2 { display: none; }
-    .visible-custom-3 { display: none; }
+    .visible-custom-1 {
+        display: block;
+    }
 
+    .visible-custom-2 {
+        display: none;
+    }
+
+    .visible-custom-3 {
+        display: none;
+    }
+}
+
+@layer responsive {
     /**
      * Tablet and up: switch visibility to custom-2.
      *
      * Hide custom-1 and show custom-2 when the viewport width is 768px or greater.
      */
     @media (width >= 768px) {
-        .visible-custom-1 { display: none; }
-        .visible-custom-2 { display: block; }
+        .visible-custom-1 {
+            display: none;
+        }
+
+        .visible-custom-2 {
+            display: block;
+        }
     }
 
     /**
@@ -90,8 +107,13 @@
      * Hide custom-2 and show custom-3 when the viewport width is 1200px or greater.
      */
     @media (width >= 1200px) {
-        .visible-custom-2 { display: none; }
-        .visible-custom-3 { display: block; }
+        .visible-custom-2 {
+            display: none;
+        }
+
+        .visible-custom-3 {
+            display: block;
+        }
     }
 }</code></pre>
                                 </article>
