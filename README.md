@@ -25,7 +25,7 @@ ______________________________________________________________________
 
 ### Download<a name="download"></a>
 
-Download the latest release from [GitHub](https://github.com/ppfeufer/responsive-toolkit/releases/download/latest/responsive-toolkit.zip).
+Download the latest release from [GitHub](https://github.com/ppfeufer/responsive-toolkit/releases/latest/download/responsive-toolkit.zip).
 
 ## Usage<a name="usage"></a>
 
