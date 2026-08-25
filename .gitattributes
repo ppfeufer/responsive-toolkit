@@ -15,7 +15,6 @@ package-lock.json export-ignore
 eslint.config.js export-ignore
 Makefile export-ignore
 CODEOWNERS export-ignore
-/responsive-toolkit.js export-ignore
-/responsive-toolkit.min.js export-ignore
-/responsive-toolkit.min.js.map export-ignore
+responsive-toolkit export-ignore
+scripts export-ignore
 src export-ignore
