@@ -13,6 +13,12 @@
  * Author:    Maciej Gurban
  * Origin:    https://github.com/maciej-gurban/responsive-bootstrap-toolkit
  */
+
+/**
+ * Responsive Toolkit for jQuery
+ *
+ * @type {{interval: number, framework: null, breakpoints: null, is: function((type|string)): Boolean, use: function(string, Object=): undefined, current: function(): string, changed: function(*, *): function(): void}}
+ */
 const ResponsiveToolkit = (($) => {
     'use strict';
 
@@ -84,7 +90,7 @@ const ResponsiveToolkit = (($) => {
         },
 
         /*
-         * Waits specified number of miliseconds before executing a callback
+         * Waits specified number of milliseconds before executing a callback
          */
         changed: (fn, ms) => {
             let timer;
@@ -143,7 +149,7 @@ const ResponsiveToolkit = (($) => {
         },
 
         /**
-         * Append visibility divs after DOM laoded
+         * Append visibility divs after DOM loaded
          */
         applyDetectionDivs: () => {
             $(document).ready(() => {
