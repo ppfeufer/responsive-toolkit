@@ -17,7 +17,7 @@
 /**
  * Responsive Toolkit for jQuery
  *
- * @type {{interval: number, framework: null, breakpoints: null, is: function((type|string)): Boolean, use: function(string, Object=): undefined, current: function(): string, changed: function(*, *): function(): void}}
+ * @type {{interval: number, framework: null, breakpoints: null, is: function((type|string)): Boolean, use: function(string, Object=): void, current: function(): string, changed: function(*, *): function(): void}}
  */
 const ResponsiveToolkit = (($) => {
     'use strict';
@@ -32,7 +32,8 @@ const ResponsiveToolkit = (($) => {
         interval: 300,
 
         /**
-         *
+         * The framework currently in use
+         * Used to determine which breakpoint detection divs to use
          */
         framework: null,
 
@@ -58,9 +59,9 @@ const ResponsiveToolkit = (($) => {
         /**
          * Determines which framework-specific breakpoint detection divs to use
          *
-         * @param {string} frameworkName
-         * @param {Object} breakpoints
-         * @returns {undefined}
+         * @param {string} frameworkName The name of the framework to use
+         * @param {Object} breakpoints An object containing breakpoint aliases and their corresponding detection divs
+         * @returns {void}
          */
         use: (frameworkName, breakpoints = {}) => {
             self.framework = frameworkName.toLowerCase();
@@ -76,6 +77,8 @@ const ResponsiveToolkit = (($) => {
 
         /**
          * Returns current breakpoint alias
+         *
+         * @returns {string}
          */
         current: () => {
             let name = 'unrecognized';
@@ -91,6 +94,10 @@ const ResponsiveToolkit = (($) => {
 
         /*
          * Waits specified number of milliseconds before executing a callback
+         *
+         * @param {function} fn Callback function to execute
+         * @param {number} ms Number of milliseconds to wait before executing the callback
+         * @returns {function(): void} A function that can be called to trigger the debounced callback
          */
         changed: (fn, ms) => {
             let timer;
@@ -107,6 +114,8 @@ const ResponsiveToolkit = (($) => {
 
     /**
      * Internal methods
+     *
+     * @type {{detectionDivs: Object, isAnExpression: function(*): Boolean, isMatchingExpression: function(*): Boolean, applyDetectionDivs: function(): void, splitExpression: function(*): {operator: *, orEqual: Boolean, breakpointName: *}, isAnyActive: function(*): Boolean}}
      */
     const internal = { // jshint ignore:line
         /**
@@ -150,6 +159,8 @@ const ResponsiveToolkit = (($) => {
 
         /**
          * Append visibility divs after DOM loaded
+         *
+         * @returns {void}
          */
         applyDetectionDivs: () => {
             $(document).ready(() => {
@@ -162,8 +173,8 @@ const ResponsiveToolkit = (($) => {
         /**
          * Determines whether passed string is a parsable expression
          *
-         * @param {type|string} str
-         * @returns {Boolean}
+         * @param {type|string} str The string to evaluate
+         * @returns {Boolean} True if the string is a parsable expression, false otherwise
          */
         isAnExpression: (str) => {
             return (str.charAt(0) === '<' || str.charAt(0) === '>');
@@ -172,7 +183,7 @@ const ResponsiveToolkit = (($) => {
         /**
          * Splits the expression in into <|> [=] alias
          *
-         * @param {string} str
+         * @param {string} str The expression to split
          * @returns {Object} Object with operator, orEqual and breakpointName properties
          */
         splitExpression: (str) => {
@@ -205,8 +216,8 @@ const ResponsiveToolkit = (($) => {
         /**
          * Returns true if currently active breakpoint matches the expression
          *
-         * @param {string[]} breakpoints
-         * @returns {Boolean}
+         * @param {string[]} breakpoints Array of breakpoint aliases to check
+         * @returns {Boolean} True if any of the breakpoints are currently active, false otherwise
          */
         isAnyActive: (breakpoints) => {
             let found = false;
@@ -226,8 +237,8 @@ const ResponsiveToolkit = (($) => {
         /**
          * Determines whether current breakpoint matches the expression given
          *
-         * @param {type|string} str
-         * @returns {Boolean}
+         * @param {type|string} str The expression to evaluate
+         * @returns {Boolean} True if the current breakpoint matches the expression, false otherwise
          */
         isMatchingExpression: (str) => {
             const expression = internal.splitExpression(str);
