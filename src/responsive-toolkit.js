@@ -146,7 +146,7 @@ const ResponsiveToolkit = (($) => {
                 'sm': $('<div class="device-sm d-none d-sm-block d-md-none d-lg-none d-xl-none"></div>'),
                 'md': $('<div class="device-md d-none d-md-block d-sm-none d-lg-none d-xl-none"></div>'),
                 'lg': $('<div class="device-lg d-none d-lg-block d-sm-none d-md-none d-xl-none"></div>'),
-                'xl': $('<div class="device-xl d-none d-xl-block d-sm-none d-md-none d-lg-none"></div>'),
+                'xl': $('<div class="device-xl d-none d-xl-block d-sm-none d-md-none d-lg-none"></div>')
             },
             // Breakpoints for Bootstrap 3
             bootstrap3: {
@@ -301,6 +301,6 @@ const ResponsiveToolkit = (($) => {
     return self;
 })(jQuery);
 
-if(typeof module !== 'undefined' && module.exports) { // jshint ignore:line
+if (typeof module !== 'undefined' && module.exports) { // jshint ignore:line
     module.exports = ResponsiveToolkit; // jshint ignore:line
 }
