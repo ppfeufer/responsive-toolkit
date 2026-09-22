@@ -255,7 +255,7 @@ const ResponsiveToolkit = (($) => {
                 let end = 0;
 
                 /**
-                 * Parsing viewport.is('<=md') we interate from smallest breakpoint ('xs') and end
+                 * Parsing viewport.is('<=md') we integrate from the smallest breakpoint ('xs') and end
                  * at 'md' breakpoint, indicated in the expression,
                  * That makes: start = 0, end = 2 (index of 'md' breakpoint)
                  *
@@ -269,7 +269,7 @@ const ResponsiveToolkit = (($) => {
                 }
 
                 /**
-                 * Parsing viewport.is('>=sm') we interate from breakpoint 'sm' and end at the end
+                 * Parsing viewport.is('>=sm') we integrate from breakpoint 'sm' and end at the end
                  * of breakpoint list.
                  * That makes: start = 1, end = undefined
                  *

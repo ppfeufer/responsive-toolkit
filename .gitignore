@@ -7,3 +7,5 @@
 /src/**/*.min.js
 /src/**/*.min.js.map
 /src/test/js/
+/*.min.js
+/*.min.js.map
