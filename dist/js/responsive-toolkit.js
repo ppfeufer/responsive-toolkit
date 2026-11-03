@@ -13,6 +13,12 @@
  * Author:    Maciej Gurban
  * Origin:    https://github.com/maciej-gurban/responsive-bootstrap-toolkit
  */
+
+/**
+ * Responsive Toolkit for jQuery
+ *
+ * @type {{interval: number, framework: null, breakpoints: null, is: function((type|string)): Boolean, use: function(string, Object=): void, current: function(): string, changed: function(*, *): function(): void}}
+ */
 const ResponsiveToolkit = (($) => {
     'use strict';
 
@@ -26,7 +32,8 @@ const ResponsiveToolkit = (($) => {
         interval: 300,
 
         /**
-         *
+         * The framework currently in use
+         * Used to determine which breakpoint detection divs to use
          */
         framework: null,
 
@@ -52,9 +59,9 @@ const ResponsiveToolkit = (($) => {
         /**
          * Determines which framework-specific breakpoint detection divs to use
          *
-         * @param {string} frameworkName
-         * @param {Object} breakpoints
-         * @returns {undefined}
+         * @param {string} frameworkName The name of the framework to use
+         * @param {Object} breakpoints An object containing breakpoint aliases and their corresponding detection divs
+         * @returns {void}
          */
         use: (frameworkName, breakpoints = {}) => {
             self.framework = frameworkName.toLowerCase();
@@ -70,6 +77,8 @@ const ResponsiveToolkit = (($) => {
 
         /**
          * Returns current breakpoint alias
+         *
+         * @returns {string}
          */
         current: () => {
             let name = 'unrecognized';
@@ -84,7 +93,11 @@ const ResponsiveToolkit = (($) => {
         },
 
         /*
-         * Waits specified number of miliseconds before executing a callback
+         * Waits specified number of milliseconds before executing a callback
+         *
+         * @param {function} fn Callback function to execute
+         * @param {number} ms Number of milliseconds to wait before executing the callback
+         * @returns {function(): void} A function that can be called to trigger the debounced callback
          */
         changed: (fn, ms) => {
             let timer;
@@ -101,6 +114,8 @@ const ResponsiveToolkit = (($) => {
 
     /**
      * Internal methods
+     *
+     * @type {{detectionDivs: Object, isAnExpression: function(*): Boolean, isMatchingExpression: function(*): Boolean, applyDetectionDivs: function(): void, splitExpression: function(*): {operator: *, orEqual: Boolean, breakpointName: *}, isAnyActive: function(*): Boolean}}
      */
     const internal = { // jshint ignore:line
         /**
@@ -109,41 +124,43 @@ const ResponsiveToolkit = (($) => {
         detectionDivs: {
             // Default breakpoints, the same breakpoints as Bootstrap 5
             default: {
-                'xs': $('<div class="device-xs responsive-toolkit-xs"></div>'), // Extra small devices (portrait phones, less than 576px)
-                'sm': $('<div class="device-sm responsive-toolkit-sm"></div>'), // Small devices (landscape phones, 576px and up)
-                'md': $('<div class="device-md responsive-toolkit-md"></div>'), // Medium devices (tablets, 768px and up)
-                'lg': $('<div class="device-lg responsive-toolkit-lg"></div>'), // Large devices (desktops, 992px and up)
-                'xl': $('<div class="device-xl responsive-toolkit-xl"></div>'), // Extra large devices (large desktops, 1200px and up)
-                'xxl': $('<div class="device-xxl responsive-toolkit-xxl"></div>') // Extra, extra large devices (larger desktops, 1400px and up)
+                xs: $('<div class="device-xs responsive-toolkit-xs"></div>'), // Extra small devices (portrait phones, less than 576px)
+                sm: $('<div class="device-sm responsive-toolkit-sm"></div>'), // Small devices (landscape phones, 576px and up)
+                md: $('<div class="device-md responsive-toolkit-md"></div>'), // Medium devices (tablets, 768px and up)
+                lg: $('<div class="device-lg responsive-toolkit-lg"></div>'), // Large devices (desktops, 992px and up)
+                xl: $('<div class="device-xl responsive-toolkit-xl"></div>'), // Extra large devices (large desktops, 1200px and up)
+                xxl: $('<div class="device-xxl responsive-toolkit-xxl"></div>') // Extra, extra large devices (larger desktops, 1400px and up)
             },
             // Breakpoints for Bootstrap 5
             bootstrap5: {
-                'xs': $('<div class="device-xs d-xs-block d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none"></div>'),
-                'sm': $('<div class="device-sm d-none d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none"></div>'),
-                'md': $('<div class="device-md d-none d-md-block d-sm-none d-lg-none d-xl-none d-xxl-none"></div>'),
-                'lg': $('<div class="device-lg d-none d-lg-block d-sm-none d-md-none d-xl-none d-xxl-none"></div>'),
-                'xl': $('<div class="device-xl d-none d-xl-block d-sm-none d-md-none d-lg-none d-xxl-none"></div>'),
-                'xxl': $('<div class="device-xxl d-none d-xxl-block d-sm-none d-md-none d-lg-none d-xl-none"></div>')
+                xs: $('<div class="device-xs d-xs-block d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none"></div>'),
+                sm: $('<div class="device-sm d-none d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none"></div>'),
+                md: $('<div class="device-md d-none d-md-block d-sm-none d-lg-none d-xl-none d-xxl-none"></div>'),
+                lg: $('<div class="device-lg d-none d-lg-block d-sm-none d-md-none d-xl-none d-xxl-none"></div>'),
+                xl: $('<div class="device-xl d-none d-xl-block d-sm-none d-md-none d-lg-none d-xxl-none"></div>'),
+                xxl: $('<div class="device-xxl d-none d-xxl-block d-sm-none d-md-none d-lg-none d-xl-none"></div>')
             },
             // Breakpoints for Bootstrap 4
             bootstrap4: {
-                'xs': $('<div class="device-xs d-xs-block d-sm-none d-md-none d-lg-none d-xl-none"></div>'),
-                'sm': $('<div class="device-sm d-none d-sm-block d-md-none d-lg-none d-xl-none"></div>'),
-                'md': $('<div class="device-md d-none d-md-block d-sm-none d-lg-none d-xl-none"></div>'),
-                'lg': $('<div class="device-lg d-none d-lg-block d-sm-none d-md-none d-xl-none"></div>'),
-                'xl': $('<div class="device-xl d-none d-xl-block d-sm-none d-md-none d-lg-none"></div>'),
+                xs: $('<div class="device-xs d-xs-block d-sm-none d-md-none d-lg-none d-xl-none"></div>'),
+                sm: $('<div class="device-sm d-none d-sm-block d-md-none d-lg-none d-xl-none"></div>'),
+                md: $('<div class="device-md d-none d-md-block d-sm-none d-lg-none d-xl-none"></div>'),
+                lg: $('<div class="device-lg d-none d-lg-block d-sm-none d-md-none d-xl-none"></div>'),
+                xl: $('<div class="device-xl d-none d-xl-block d-sm-none d-md-none d-lg-none"></div>')
             },
             // Breakpoints for Bootstrap 3
             bootstrap3: {
-                'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),
-                'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>'),
-                'md': $('<div class="device-md visible-md visible-md-block"></div>'),
-                'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
+                xs: $('<div class="device-xs visible-xs visible-xs-block"></div>'),
+                sm: $('<div class="device-sm visible-sm visible-sm-block"></div>'),
+                md: $('<div class="device-md visible-md visible-md-block"></div>'),
+                lg: $('<div class="device-lg visible-lg visible-lg-block"></div>')
             }
         },
 
         /**
-         * Append visibility divs after DOM laoded
+         * Append visibility divs after DOM loaded
+         *
+         * @returns {void}
          */
         applyDetectionDivs: () => {
             $(document).ready(() => {
@@ -156,8 +173,8 @@ const ResponsiveToolkit = (($) => {
         /**
          * Determines whether passed string is a parsable expression
          *
-         * @param {type|string} str
-         * @returns {Boolean}
+         * @param {type|string} str The string to evaluate
+         * @returns {Boolean} True if the string is a parsable expression, false otherwise
          */
         isAnExpression: (str) => {
             return (str.charAt(0) === '<' || str.charAt(0) === '>');
@@ -166,7 +183,7 @@ const ResponsiveToolkit = (($) => {
         /**
          * Splits the expression in into <|> [=] alias
          *
-         * @param {string} str
+         * @param {string} str The expression to split
          * @returns {Object} Object with operator, orEqual and breakpointName properties
          */
         splitExpression: (str) => {
@@ -199,8 +216,8 @@ const ResponsiveToolkit = (($) => {
         /**
          * Returns true if currently active breakpoint matches the expression
          *
-         * @param {string[]} breakpoints
-         * @returns {Boolean}
+         * @param {string[]} breakpoints Array of breakpoint aliases to check
+         * @returns {Boolean} True if any of the breakpoints are currently active, false otherwise
          */
         isAnyActive: (breakpoints) => {
             let found = false;
@@ -220,8 +237,8 @@ const ResponsiveToolkit = (($) => {
         /**
          * Determines whether current breakpoint matches the expression given
          *
-         * @param {type|string} str
-         * @returns {Boolean}
+         * @param {type|string} str The expression to evaluate
+         * @returns {Boolean} True if the current breakpoint matches the expression, false otherwise
          */
         isMatchingExpression: (str) => {
             const expression = internal.splitExpression(str);
@@ -238,7 +255,7 @@ const ResponsiveToolkit = (($) => {
                 let end = 0;
 
                 /**
-                 * Parsing viewport.is('<=md') we interate from smallest breakpoint ('xs') and end
+                 * Parsing viewport.is('<=md') we integrate from the smallest breakpoint ('xs') and end
                  * at 'md' breakpoint, indicated in the expression,
                  * That makes: start = 0, end = 2 (index of 'md' breakpoint)
                  *
@@ -252,7 +269,7 @@ const ResponsiveToolkit = (($) => {
                 }
 
                 /**
-                 * Parsing viewport.is('>=sm') we interate from breakpoint 'sm' and end at the end
+                 * Parsing viewport.is('>=sm') we integrate from breakpoint 'sm' and end at the end
                  * of breakpoint list.
                  * That makes: start = 1, end = undefined
                  *
@@ -284,6 +301,6 @@ const ResponsiveToolkit = (($) => {
     return self;
 })(jQuery);
 
-if(typeof module !== 'undefined' && module.exports) { // jshint ignore:line
+if (typeof module !== 'undefined' && module.exports) { // jshint ignore:line
     module.exports = ResponsiveToolkit; // jshint ignore:line
 }

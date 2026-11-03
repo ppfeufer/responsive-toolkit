@@ -124,36 +124,36 @@ const ResponsiveToolkit = (($) => {
         detectionDivs: {
             // Default breakpoints, the same breakpoints as Bootstrap 5
             default: {
-                'xs': $('<div class="device-xs responsive-toolkit-xs"></div>'), // Extra small devices (portrait phones, less than 576px)
-                'sm': $('<div class="device-sm responsive-toolkit-sm"></div>'), // Small devices (landscape phones, 576px and up)
-                'md': $('<div class="device-md responsive-toolkit-md"></div>'), // Medium devices (tablets, 768px and up)
-                'lg': $('<div class="device-lg responsive-toolkit-lg"></div>'), // Large devices (desktops, 992px and up)
-                'xl': $('<div class="device-xl responsive-toolkit-xl"></div>'), // Extra large devices (large desktops, 1200px and up)
-                'xxl': $('<div class="device-xxl responsive-toolkit-xxl"></div>') // Extra, extra large devices (larger desktops, 1400px and up)
+                xs: $('<div class="device-xs responsive-toolkit-xs"></div>'), // Extra small devices (portrait phones, less than 576px)
+                sm: $('<div class="device-sm responsive-toolkit-sm"></div>'), // Small devices (landscape phones, 576px and up)
+                md: $('<div class="device-md responsive-toolkit-md"></div>'), // Medium devices (tablets, 768px and up)
+                lg: $('<div class="device-lg responsive-toolkit-lg"></div>'), // Large devices (desktops, 992px and up)
+                xl: $('<div class="device-xl responsive-toolkit-xl"></div>'), // Extra large devices (large desktops, 1200px and up)
+                xxl: $('<div class="device-xxl responsive-toolkit-xxl"></div>') // Extra, extra large devices (larger desktops, 1400px and up)
             },
             // Breakpoints for Bootstrap 5
             bootstrap5: {
-                'xs': $('<div class="device-xs d-xs-block d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none"></div>'),
-                'sm': $('<div class="device-sm d-none d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none"></div>'),
-                'md': $('<div class="device-md d-none d-md-block d-sm-none d-lg-none d-xl-none d-xxl-none"></div>'),
-                'lg': $('<div class="device-lg d-none d-lg-block d-sm-none d-md-none d-xl-none d-xxl-none"></div>'),
-                'xl': $('<div class="device-xl d-none d-xl-block d-sm-none d-md-none d-lg-none d-xxl-none"></div>'),
-                'xxl': $('<div class="device-xxl d-none d-xxl-block d-sm-none d-md-none d-lg-none d-xl-none"></div>')
+                xs: $('<div class="device-xs d-xs-block d-sm-none d-md-none d-lg-none d-xl-none d-xxl-none"></div>'),
+                sm: $('<div class="device-sm d-none d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none"></div>'),
+                md: $('<div class="device-md d-none d-md-block d-sm-none d-lg-none d-xl-none d-xxl-none"></div>'),
+                lg: $('<div class="device-lg d-none d-lg-block d-sm-none d-md-none d-xl-none d-xxl-none"></div>'),
+                xl: $('<div class="device-xl d-none d-xl-block d-sm-none d-md-none d-lg-none d-xxl-none"></div>'),
+                xxl: $('<div class="device-xxl d-none d-xxl-block d-sm-none d-md-none d-lg-none d-xl-none"></div>')
             },
             // Breakpoints for Bootstrap 4
             bootstrap4: {
-                'xs': $('<div class="device-xs d-xs-block d-sm-none d-md-none d-lg-none d-xl-none"></div>'),
-                'sm': $('<div class="device-sm d-none d-sm-block d-md-none d-lg-none d-xl-none"></div>'),
-                'md': $('<div class="device-md d-none d-md-block d-sm-none d-lg-none d-xl-none"></div>'),
-                'lg': $('<div class="device-lg d-none d-lg-block d-sm-none d-md-none d-xl-none"></div>'),
-                'xl': $('<div class="device-xl d-none d-xl-block d-sm-none d-md-none d-lg-none"></div>')
+                xs: $('<div class="device-xs d-xs-block d-sm-none d-md-none d-lg-none d-xl-none"></div>'),
+                sm: $('<div class="device-sm d-none d-sm-block d-md-none d-lg-none d-xl-none"></div>'),
+                md: $('<div class="device-md d-none d-md-block d-sm-none d-lg-none d-xl-none"></div>'),
+                lg: $('<div class="device-lg d-none d-lg-block d-sm-none d-md-none d-xl-none"></div>'),
+                xl: $('<div class="device-xl d-none d-xl-block d-sm-none d-md-none d-lg-none"></div>')
             },
             // Breakpoints for Bootstrap 3
             bootstrap3: {
-                'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),
-                'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>'),
-                'md': $('<div class="device-md visible-md visible-md-block"></div>'),
-                'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
+                xs: $('<div class="device-xs visible-xs visible-xs-block"></div>'),
+                sm: $('<div class="device-sm visible-sm visible-sm-block"></div>'),
+                md: $('<div class="device-md visible-md visible-md-block"></div>'),
+                lg: $('<div class="device-lg visible-lg visible-lg-block"></div>')
             }
         },
 

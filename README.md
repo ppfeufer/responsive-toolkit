@@ -135,14 +135,14 @@ Instead of Bootstrap's aliases `xs`, `sm`, `md` and `lg`, Foundation uses: `smal
 (($, viewport) => {
 
     var myBreakpoints = {
-        'alias-1': $('<div class="device-alias-1 visible-custom-1"></div>'),
-        'alias-2': $('<div class="device-alias-2 visible-custom-2"></div>'),
-        'alias-3': $('<div class="device-alias-3 visible-custom-3"></div>')
+        alias_1: $('<div class="device-alias-1 visible-custom-1"></div>'),
+        alias_2: $('<div class="device-alias-2 visible-custom-2"></div>'),
+        alias_3: $('<div class="device-alias-3 visible-custom-3"></div>')
     };
 
     viewport.use('MyBreakpoints', myBreakpoints);
 
-    if(viewport.is('alias-1')) {
+    if(viewport.is('alias_1')) {
         // ...
     }
 })(jQuery, ResponsiveToolkit);

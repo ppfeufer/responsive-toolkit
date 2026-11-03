@@ -25,7 +25,14 @@
      *
      * Show xs and hide sm, md, lg, xl, xxl by default
     --------------------------------------------------------------------------------- */
-    :is(.responsive-toolkit-xs, .responsive-toolkit-sm, .responsive-toolkit-md, .responsive-toolkit-lg, .responsive-toolkit-xl, .responsive-toolkit-xxl) {
+    :is(
+        .responsive-toolkit-xs,
+        .responsive-toolkit-sm,
+        .responsive-toolkit-md,
+        .responsive-toolkit-lg,
+        .responsive-toolkit-xl,
+        .responsive-toolkit-xxl
+    ) {
         display: none;
     }
 
