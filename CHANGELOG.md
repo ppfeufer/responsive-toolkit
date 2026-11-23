@@ -48,6 +48,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Added
+
+- Load guard to prevent the script from being loaded multiple times
+
 ## [0.0.3] - 2026-08-12
 
 ### Added
